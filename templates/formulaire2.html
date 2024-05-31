@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'enregistrement d'un nouveau livre</title>
+</head>
+<body>
+    <h1>Enregistrer un nouveau livre</h1>
+    <form action="./enregistrer_livre" method="POST">
+         <label for="titre">Titre  :</label>
+        <input type="text" id="titre" name="titre" required><br><br>    
+        <label for="auteur">Auteur   :</label>
+        <input type="text" id="auteur" name="auteur" required><br><br>
+        <label for="annee_publication">Annee de publication  :</label>
+        <input type="integer" id="annee_publication" name="annee_publication" required><br><br>
+        <label for="quantite">Quantité  :</label>
+        <input type="integer" id="quantite" name="quantite" required><br><br>
+      
+        <button type="submit">Enregistrer</button>
+    </form>
+</body>
+</html>

@@ -61,6 +61,9 @@ def Readfiche1(nom):
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
 
+ # Ajout d'une route pour selectionner un client par son nom
+ # ==========================================================
+
 @app.route('/consultation/')
 def ReadBDD():
     conn = sqlite3.connect('database.db')

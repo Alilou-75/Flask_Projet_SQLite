@@ -52,30 +52,6 @@ def Readfiche(post_id):
     
  # Ajout d'une route pour selectionner un client par son Nom
  # ==========================================================
-@app.route('/fiche_nom_client/<string:nom>')
-def Readfiche1(nom):
-
- if not est_authentifie():
-        # Rediriger vers la page d'authentification si l'utilisateur n'est pas authentifié
-        return redirect(url_for('authentification'))
-
-  # Si l'utilisateur est authentifié
-    return "<h2>Bravo, vous êtes authentifié</h2>"
-
-@app.route('/authentification', methods=['GET', 'POST'])
-def authentification():
-    if request.method == 'POST':
-        # Vérifier les identifiants
-        if request.form['username'] == 'user' and request.form['password'] == '12345': # password à cacher par la suite
-            session['authentifie'] = True
-            # Rediriger vers la route lecture après une authentification réussie
-            return redirect(url_for('fiche_nom_client/<string:nom>'))
-        else:
-            # Afficher un message d'erreur si les identifiants sont incorrects
-            return render_template('formulaire_authentification.html', error=True)
-
-    return render_template('formulaire_authentification.html', error=False)
-
 
 @app.route('/fiche_nom_client/<string:nom>')
 def Readfiche1(nom):

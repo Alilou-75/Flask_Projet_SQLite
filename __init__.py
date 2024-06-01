@@ -63,9 +63,8 @@ def Readfiche1(nom):
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
 
- # Ajout d'une route pour selectionner un client par son nom
- # ==========================================================
-
+# Ajout d'une route pour consulter la base de données Clients
+# ===========================================================
 @app.route('/consultation/')
 def ReadBDD():
     conn = sqlite3.connect('database.db')
@@ -75,6 +74,9 @@ def ReadBDD():
     conn.close()
     return render_template('read_data.html', data=data)
 
+
+ # Formulaire enregistrement d'un client
+ # =====================================
 @app.route('/enregistrer_client', methods=['GET'])
 def formulaire_client():
     return render_template('formulaire.html')  # afficher le formulaire
@@ -109,6 +111,31 @@ def ReadBDD2():
     return render_template('read_data2.html', data=data)
 
 
+ # Formulaire enregistrement d'un livre
+ # =====================================
+@app.route('/enregistrer_livre', methods=['GET'])
+def formulaire_livre():
+    return render_template('formulaire2.html')  # afficher le formulaire
+
+@app.route('/enregistrer_livre', methods=['POST'])
+def enregistrer_livre():
+    titre = request.form['titre']
+    auteur = request.form['auteur']
+    annee_publication = request.form['annee_publication']
+    quantite = request.form['quantite']
+
+    # Connexion à la base de données
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+
+    # Exécution de la requête SQL pour insérer un nouveau client
+    cursor.execute("INSERT INTO livres (titre, auteur, annee_publication, quantite) VALUES (?, ?, ?, ?, ?)", (titre, auteur, annee_publication, quantite))
+    conn.commit()
+    conn.close()
+    return redirect('/livres/')  # Rediriger vers la page d'accueil après l'enregistrement
+                                                                                                                                       
+if __name__ == "__main__":
+  app.run(debug=True)
 
 
 

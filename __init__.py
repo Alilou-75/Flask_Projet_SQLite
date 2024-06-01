@@ -120,7 +120,7 @@ def ReadBDD2():
 def Readfiche2(post_ID_livre):
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM livres WHERE id = ?', (post_ID_livre,))
+    cursor.execute('SELECT * FROM livres WHERE ID_livre = ?', (post_ID_livre,))
     data = cursor.fetchall()
     conn.close()
     # Rendre le template HTML et transmettre les données

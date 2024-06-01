@@ -11,11 +11,15 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'  # Clé secrète pour les sessions
 # Fonction pour créer une clé "authentifie" dans la session utilisateur
 def est_authentifie():
     return session.get('authentifie')
-
+    
+# Ajout d'une route pour acceder à la page d'accueil serveur:
+# ===========================================================
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
-
+    
+# Route pour acceder à la base de données avec authentification:
+# ==============================================================
 @app.route('/lecture')
 def lecture():
     if not est_authentifie():
@@ -38,30 +42,6 @@ def authentification():
             return render_template('formulaire_authentification.html', error=True)
 
     return render_template('formulaire_authentification.html', error=False)
-# Ajout d'une route pour selectionner un client par son Numero
-# ==========================================================
-@app.route('/fiche_client/<int:post_id>')
-def Readfiche(post_id):
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
-    data = cursor.fetchall()
-    conn.close()
-    # Rendre le template HTML et transmettre les données
-    return render_template('read_data.html', data=data)
-    
- # Ajout d'une route pour selectionner un client par son Nom
- # ==========================================================
-
-@app.route('/fiche_nom_client/<string:nom>')
-def Readfiche1(nom):
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients WHERE nom = ?', (nom,))
-    data = cursor.fetchall()
-    conn.close()
-    # Rendre le template HTML et transmettre les données
-    return render_template('read_data.html', data=data)
 
 # Ajout d'une route pour consulter la liste des Clients
 # =====================================================
@@ -74,9 +54,35 @@ def ReadBDD():
     conn.close()
     return render_template('read_data.html', data=data)
 
+# Selectionner un client par son Numero:
+# =====================================
+@app.route('/fiche_client/<int:post_id>')
+def Readfiche(post_id):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
+    data = cursor.fetchall()
+    conn.close()
+    # Rendre le template HTML et transmettre les données
+    return render_template('read_data.html', data=data)
+    
+ # Selectionner un client par son Nom:
+ # ==================================
 
- # Formulaire enregistrement d'un client
- # =====================================
+@app.route('/fiche_nom_client/<string:nom>')
+def Readfiche1(nom):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM clients WHERE nom = ?', (nom,))
+    data = cursor.fetchall()
+    conn.close()
+    # Rendre le template HTML et transmettre les données
+    return render_template('read_data.html', data=data)
+
+
+
+ # Formulaire d'enregistrement d'un client:
+ # =======================================
 @app.route('/enregistrer_client', methods=['GET'])
 def formulaire_client():
     return render_template('formulaire.html')  # afficher le formulaire
@@ -99,8 +105,8 @@ def enregistrer_client():
 if __name__ == "__main__":
   app.run(debug=True)
     
- # Ajout d'une route pour consulter la liste des Livres
- # ====================================================
+ # Consulter la liste des Livres:
+ # ==============================
 @app.route('/livres/')
 def ReadBDD2():
     conn = sqlite3.connect('database2.db')
@@ -110,9 +116,34 @@ def ReadBDD2():
     conn.close()
     return render_template('read_data2.html', data=data)
 
+# Selectionner un livre par son Numero:
+# =====================================
+@app.route('/fiche_Livre/<int:post_id>')
+def Readfiche2(post_id):
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM livres WHERE id = ?', (post_id,))
+    data = cursor.fetchall()
+    conn.close()
+    # Rendre le template HTML et transmettre les données
+    return render_template('read_data2.html', data=data)
+    
+ # Selectionner un livre par son Nom:
+ # ==================================
 
- # Formulaire enregistrement d'un livre
- # =====================================
+@app.route('/fiche_nom_livre/<string:nom>')
+def Readfiche3(nom):
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM livres WHERE nom = ?', (nom,))
+    data = cursor.fetchall()
+    conn.close()
+    # Rendre le template HTML et transmettre les données
+    return render_template('read_data2.html', data=data)
+
+
+ # Formulaire d'enregistrement d'un livre:
+ # =======================================
 @app.route('/enregistrer_livre', methods=['GET'])
 def formulaire_livre():
     return render_template('formulaire2.html')  # afficher le formulaire

@@ -76,8 +76,11 @@ def Readfiche1(nom):
     cursor.execute('SELECT * FROM clients WHERE nom = ?', (nom,))
     data = cursor.fetchall()
     conn.close()
+    if Quantite > 0
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
+    else
+    return "Ce livre n'est plus disponible"
 
  # Formulaire d'enregistrement d'un client:
  # =======================================

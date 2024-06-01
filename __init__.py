@@ -79,8 +79,6 @@ def Readfiche1(nom):
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
 
-
-
  # Formulaire d'enregistrement d'un client:
  # =======================================
 @app.route('/enregistrer_client', methods=['GET'])
@@ -118,11 +116,11 @@ def ReadBDD2():
 
 # Selectionner un livre par son Numero:
 # =====================================
-@app.route('/fiche_Livre/<int:post_id>')
-def Readfiche2(post_id):
+@app.route('/fiche_livre/<int:post_ID_livre>')
+def Readfiche2(post_ID_livre):
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM livres WHERE id = ?', (post_id,))
+    cursor.execute('SELECT * FROM livres WHERE id = ?', (post_ID_livre,))
     data = cursor.fetchall()
     conn.close()
     # Rendre le template HTML et transmettre les données
@@ -131,11 +129,11 @@ def Readfiche2(post_id):
  # Selectionner un livre par son Nom:
  # ==================================
 
-@app.route('/fiche_nom_livre/<string:nom>')
-def Readfiche3(nom):
+@app.route('/fiche_Titre_livre/<string:titre>')
+def Readfiche3(titre):
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM livres WHERE nom = ?', (nom,))
+    cursor.execute('SELECT * FROM livres WHERE titre = ?', (titre,))
     data = cursor.fetchall()
     conn.close()
     # Rendre le template HTML et transmettre les données

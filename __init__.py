@@ -63,8 +63,8 @@ def Readfiche1(nom):
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
 
-# Ajout d'une route pour consulter la base de données Clients
-# ===========================================================
+# Ajout d'une route pour consulter la liste des Clients
+# =====================================================
 @app.route('/consultation/')
 def ReadBDD():
     conn = sqlite3.connect('database.db')
@@ -85,13 +85,13 @@ def formulaire_client():
 def enregistrer_client():
     nom = request.form['nom']
     prenom = request.form['prenom']
-
+    adresse = request.form['adresse']
     # Connexion à la base de données
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
 
     # Exécution de la requête SQL pour insérer un nouveau client
-    cursor.execute('INSERT INTO clients (created, nom, prenom, adresse) VALUES (?, ?, ?, ?)', (1002938, nom, prenom, "ICI"))
+    cursor.execute('INSERT INTO clients (created, nom, prenom, adresse) VALUES (?, ?, ?, ?)', (1002938, nom, prenom, adresse))
     conn.commit()
     conn.close()
     return redirect('/consultation/')  # Rediriger vers la page d'accueil après l'enregistrement
@@ -99,8 +99,8 @@ def enregistrer_client():
 if __name__ == "__main__":
   app.run(debug=True)
     
- # Ajout d'une route pour selectionner un clivre
- # =============================================
+ # Ajout d'une route pour consulter la liste des Livres
+ # ====================================================
 @app.route('/livres/')
 def ReadBDD2():
     conn = sqlite3.connect('database2.db')

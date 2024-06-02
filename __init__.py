@@ -167,9 +167,9 @@ def enregistrer_livre():
 if __name__ == "__main__":
   app.run(debug=True)
 
-@app.route('/delete/<int:id>')
-def delete_livre(id):
-    livre = livre.query.get_or_404(id)
+@app.route('/delete_livre/<int:post_ID_livre>')
+def delete_livre(post_ID_livre):
+    livre = livre.query.get_or_404(post_ID_livre)
     try:
         db.session.delete(livre)
         db.session.commit()

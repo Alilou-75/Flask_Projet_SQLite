@@ -173,11 +173,10 @@ if __name__ == "__main__":
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database2.db'
 db = SQLAlchemy(app)
 
-@app.route('/delete_livre/<int:post_ID_livre>')
-def delete_livre(post_ID_livre):
-    livre = livre.query.get_or_404(post_ID_livre)
-    try:
-        db.session.delete(livre)
+@app.route('/supprimer_livre/<int:post_ID_livre>', methods=['GET'])
+def supprimer_livre(post_ID_livre):
+    livre_a_supprimer = livre.query.get_or_404(post_ID_livre)
+    db.session.delete(livre_a_supprimer)
         db.session.commit()
         flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
     except Exception as e:

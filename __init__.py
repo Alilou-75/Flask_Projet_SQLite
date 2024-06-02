@@ -172,7 +172,7 @@ if __name__ == "__main__":
 
 @app.route('/supprimer_livre/<int:post_ID_livre>')
 def supprimer_livre(post_ID_livre):
-    conn = get_db_connection()
+    conn = sqlite3.connect('database2.db')
     conn.execute('DELETE FROM livres WHERE ID_livre = ?', (post_ID_livre,))
     conn.commit()
     conn.close()
@@ -181,7 +181,7 @@ def supprimer_livre(post_ID_livre):
 
 if __name__ == '__main__':
     # Création de la table si elle n'existe pas déjà
-    conn = get_db_connection()
+    conn = sqlite3.connect('database2.db')
     conn.execute('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, titre TEXT NOT NULL, auteur TEXT NOT NULL, année_publication INTEGER, quantité INTEGER)')
     conn.commit()
     conn.close()

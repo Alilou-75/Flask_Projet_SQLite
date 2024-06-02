@@ -1,4 +1,5 @@
-from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session, flash
+from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
@@ -166,7 +167,20 @@ def enregistrer_livre():
 if __name__ == "__main__":
   app.run(debug=True)
 
+@app.route('/delete/<int:id>')
+def delete_livre(id):
+    livre = livre.query.get_or_404(id)
+    try:
+        db.session.delete(livre)
+        db.session.commit()
+        flash('Livre supprimé avec succès!', 'success')
+    except Exception as e:
+        flash(f'Erreur lors de la suppression du livre: {str(e)}', 'danger')
+    return redirect(url_for('livres'))
 
+if __name__ == '__main__':
+    db.create_all()
+    app.run(debug=True)
 
 
 

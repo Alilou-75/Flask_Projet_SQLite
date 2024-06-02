@@ -178,7 +178,15 @@ def supprimer_livre():
     data = cursor.fetchall()
     conn.close()
     return render_template('index.html', data=data)
-
+    
+@app.route('/supprimer_livre/<int:post_ID_livre>')
+def supprimer_livre(post_ID_livre):
+    conn = sqlite3.connect('database2.db')
+    conn.execute('DELETE FROM livres WHERE ID_livre = ?', (post_ID_livre,))
+    conn.commit()
+    conn.close()
+    flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
+    return redirect(url_for('/livres/'))
 if __name__ == '__main__':
     # Création de la table si elle n'existe pas déjà
     conn = sqlite3.connect('database2.db')

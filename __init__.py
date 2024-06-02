@@ -177,7 +177,7 @@ def supprimer_livre(post_ID_livre):
     conn.commit()
     conn.close()
     flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
-    return redirect(url_for('/livres/'))
+    return redirect(url_for('/supprimer_livre/'))
 
 if __name__ == '__main__':
     # Création de la table si elle n'existe pas déjà

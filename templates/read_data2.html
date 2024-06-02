@@ -2,27 +2,35 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    
     <title>Livres</title>
 </head>
 <body>
     <h1>Liste des livres</h1>
-    <table border='2'>
-        <tr bgcolor="yellow">
-            <th>ID</th>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Année de publication</th>
-            <th>Quantité</th>
-        </tr>
-        {% for row in data %}
+    <table id="myTable">
+       <thead>
+            <tr bgcolor="yellow">
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Année de publication</th>
+                <th>Quantité</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+             {% for row in data %}
         <tr>
             <td>{{ row[0] }}</td>
             <td>{{ row[1] }}</td>
             <td>{{ row[2] }}</td>
             <td>{{ row[3] }}</td>
             <td>{{ row[4] }}</td>
+            <td><button class="delete-btn">Supprimer</button></td>
         </tr>
         {% endfor %}
+        </tbody>   
     </table>
+    
 </body>
 </html>

@@ -170,8 +170,8 @@ if __name__ == "__main__":
 # Route pour supprimer un livre:
 #*******************************
 
-@app.route('/delete_livre/')
-def supprimer_livre():
+@app.route('/delete_livre/<int:post_ID_livre>')
+def delete_livre():
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM Livres;')
@@ -179,8 +179,8 @@ def supprimer_livre():
     conn.close()
     return render_template('index.html', data=data)
     
-@app.route('/supprimer_livre/<int:post_ID_livre>')
-def supprimer_livre(post_ID_livre):
+@app.route('/supprimer_livre/')
+def supprimer_livre():
     conn = sqlite3.connect('database2.db')
     conn.execute('DELETE FROM livres WHERE ID_livre = ?', (post_ID_livre,))
     conn.commit()

@@ -170,14 +170,14 @@ if __name__ == "__main__":
 # Route pour supprimer un livre:
 #*******************************
 
-@app.route('/supprimer_livre/<int:post_ID_livre>')
-def supprimer_livre(post_ID_livre):
+@app.route('/supprimer_livre/')
+def supprimer_livre():
     conn = sqlite3.connect('database2.db')
-    conn.execute('DELETE FROM livres WHERE ID_livre = ?', (post_ID_livre,))
-    conn.commit()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Livres;')
+    data = cursor.fetchall()
     conn.close()
-    flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
-    return redirect(url_for('/supprimer_livre/'))
+    return render_template('index.html', data=data)
 
 if __name__ == '__main__':
     # Création de la table si elle n'existe pas déjà

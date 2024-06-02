@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session, flash
+lfrom flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session, flash
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
@@ -170,7 +170,7 @@ if __name__ == "__main__":
 # Route pour supprimer un livre:
 #*******************************
 
-@app.route('/supprimer_livre/')
+@app.route('/delete_livre/')
 def supprimer_livre():
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()

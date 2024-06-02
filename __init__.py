@@ -166,6 +166,12 @@ def enregistrer_livre():
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
+    
+# Suppression d'un livre par son Numero:
+# ======================================
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database2.db'
+db = SQLAlchemy(app)
 
 @app.route('/delete_livre/<int:post_ID_livre>')
 def delete_livre(post_ID_livre):
@@ -173,16 +179,14 @@ def delete_livre(post_ID_livre):
     try:
         db.session.delete(livre)
         db.session.commit()
-        flash('Livre supprimé avec succès!', 'success')
+        flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
     except Exception as e:
         flash(f'Erreur lors de la suppression du livre: {str(e)}', 'danger')
-    return redirect(url_for('livres'))
+    return redirect('/livres/')
 
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
-
-
 
 
 

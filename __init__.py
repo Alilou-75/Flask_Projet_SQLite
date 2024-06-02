@@ -1,4 +1,4 @@
-lfrom flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session, flash
+from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session, flash
 from flask import render_template
 from flask import json
 from urllib.request import urlopen

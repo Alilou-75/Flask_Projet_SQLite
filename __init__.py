@@ -102,7 +102,8 @@ def enregistrer_client():
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
-    
+#======================================================================================( Projet de Bibliothèque )====================================================================================
+
  # Consulter la liste des Livres:
  # ==============================
 @app.route('/livres/')
@@ -166,7 +167,27 @@ def enregistrer_livre():
 if __name__ == "__main__":
   app.run(debug=True)
     
+# Route pour supprimer un livre:
+#*******************************
 
+@app.route('/supprimer_livre/<int:post_ID_livre>')
+def supprimer_livre(post_ID_livre):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM livres WHERE ID_livre = ?', (post_ID_livre,))
+    conn.commit()
+    conn.close()
+    flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
+ except Exception as e:
+        flash('Erreur lors de la suppression du livre.', 'danger')
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    # Création de la table si elle n'existe pas déjà
+    conn = get_db_connection()
+    conn.execute('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, titre TEXT NOT NULL, auteur TEXT NOT NULL, année_publication INTEGER, quantité INTEGER)')
+    conn.commit()
+    conn.close()
+    app.run(debug=True)
 
 
 

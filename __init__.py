@@ -167,39 +167,6 @@ def enregistrer_livre():
 if __name__ == "__main__":
   app.run(debug=True)
     
-# Suppression d'un livre par son Numero:
-# ======================================
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database2.db'
-db = SQLAlchemy(app)
-class Livre(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    titre = db.Column(db.String(50), nullable=False)
-    Auteur = db.Column(db.String(50), nullable=False)
-    Année de publication = db.Column(db.Integer(4), nullable=False)
-    Quantité = db.Column(db.Integer(50), nullable=False)
-
-@app.route('/')
-def index():
-    livres = livres.query.all()
-    return render_template('index.html', livres=livres)
-
-@app.route('/supprimer_livre/<int:post_ID_livre>', methods=['GET'])
-def supprimer_livre(post_ID_livre):
-    livre_a_supprimer = livre.query.get_or_404(post_ID_livre)
-    db.session.delete(livre_a_supprimer)
-        db.session.commit()
-        flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
-    except Exception as e:
-        flash('Erreur lors de la suppression du client.', 'danger')
-    return redirect(url_for('index'))
-
-
-if __name__ == '__main__':
-    db.create_all()
-    app.run(debug=True)
-
-
 
 
 

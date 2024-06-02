@@ -177,8 +177,6 @@ def supprimer_livre(post_ID_livre):
     conn.commit()
     conn.close()
     flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
- except Exception as e:
-        flash('Erreur lors de la suppression du livre.', 'danger')
     return redirect(url_for('index'))
 
 if __name__ == '__main__':

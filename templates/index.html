@@ -30,12 +30,12 @@
         <tbody>
             {% for livre in livre %}
             <tr>
-                <td>{{ livre.id }}</td>
-                <td>{{ livre.titre }}</td>
-                <td>{{ livre.auteur }}</td>
-                <td>{{ livre.année_de_publication }}</td>
-                <td>{{ livre.quantité  }}</td>
-                <td><a href="{{ url_for('supprimer_livre', id=livre.post_ID_livre) }}">Supprimer</a></td>
+<td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td><a href="{{ url_for('supprimer_livre', id=livre.post_ID_livre) }}">Supprimer</a></td>
             </tr>
             {% endfor %}
         </tbody>

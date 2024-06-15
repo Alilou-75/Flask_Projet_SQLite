@@ -1,8 +1,13 @@
 body {
+    background:linear-gradient(to bottom right, rgb(192, 192, 191), rgb(207, 124, 76), rgb(55, 89, 182));
+    padding: 20;
     font-family: Arial, sans-serif;
     margin: 20px;
 }
-
+ h1 {
+    text-align: center;
+    color: blue;
+        }
 table {
     width: 100%;
     border-collapse: collapse;

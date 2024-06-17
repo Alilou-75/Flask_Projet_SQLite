@@ -75,9 +75,9 @@ p,nav {
         }
 fieldset{
     background:linear-gradient(to bottom right, rgb(192, 192, 191), rgb(51, 35, 26), rgb(28, 58, 141));
- border-radius: 10px;
+    border-radius: 10px;
 }
-.bouton {
+button {
     border: 0;
     line-height: 2.1;
     font-size: 0.8rem;
@@ -92,11 +92,11 @@ fieldset{
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
     width: 100px;
 }
-.bouton:hover {
+button:hover {
  background-color: rgb(159, 158, 160);
 }
 
-.bouton:active {
+button:active {
  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
    }

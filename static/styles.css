@@ -5,6 +5,7 @@ body {
     padding: 20;
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-repeat: no-repeat;
 }
  h1 {
     text-align: center;
@@ -58,6 +59,8 @@ nav {
         font-size: 20px;
         margin: 5px 10px;
         cursor: pointer;
+        width: 50%;
+        border-shadow: 3px 3px 3px black; 
       }
 p,nav {
             margin-left: 20px;

@@ -5,6 +5,8 @@
     <div class="row">
         <div class="col-sm-3"></div>
         <form method="POST" class="text-left col-sm-6">
+            <fieldset>
+                 <legend><i>Merci de remplire le formulaire pour enregistrer un nouveau client :</i></legend>
             {{ form.hidden_tag() }}
             <div class="form-group">
                 {{ form.nom.label }} {{ form.nom(class="form-control") }}
@@ -13,6 +15,7 @@
                 {{ form.prenom.label }} {{ form.prenom(class="form-control") }}
             </div>
             {{ form.submit(class="btn btn-primary") }}
+                </fieldset>
         </form>
         <div class="col-sm-3"></div>
     </div>

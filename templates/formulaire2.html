@@ -9,6 +9,8 @@
 <body>
     <h1>Enregistrer un nouveau livre</h1>
     <form action="./enregistrer_livre" method="POST">
+        <fieldset>
+                 <legend><i>Merci de remplire le formulaire pour enregistrer un nouveau client :</i></legend>
          <label for="titre">Titre  :</label>
         <input type="text" id="titre" name="titre" required><br><br>    
         <label for="auteur">Auteur   :</label>
@@ -19,6 +21,7 @@
         <input type="integer" id="quantite" name="quantite" required><br><br>
       
         <button type="submit">Enregistrer</button>
+            </fieldset>
     </form>
 </body>
 </html>

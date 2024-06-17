@@ -17,6 +17,10 @@ def est_authentifie():
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
+
+@app.route('/graphique')
+def températures():
+    return render_template('graphique.html')
     
 # Route pour acceder à la base de données avec authentification:
 # ==============================================================

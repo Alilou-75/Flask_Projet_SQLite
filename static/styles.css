@@ -43,7 +43,7 @@ th {
 nav {
     display: flex;
     flex-direction: column;
-    border: 2px solid ;
+    box-shadow: 3px 3px 3px black;
     border-radius: 10px;
     padding: 20px;
     background-color: #5992e9;
@@ -79,7 +79,8 @@ fieldset{
     width: 60%;
     height: 200px;
     padding-top: 20px;
-    padding-left: 10px;
+    padding-left: 20px;
+    box-shadow: 3px 3px 3px black;
 }
 button {
     border: 0;
@@ -105,4 +106,6 @@ button:active {
  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
    }
-
+input {
+    border-radius: 7px;
+}

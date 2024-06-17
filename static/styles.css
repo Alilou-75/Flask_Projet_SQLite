@@ -1,6 +1,6 @@
 body {
     background:linear-gradient(to bottom right, rgb(192, 192, 191), rgb(207, 124, 76), rgb(55, 89, 182));
-    background-size: contain; 
+    background-size: 100%; 
     background-position: center;
     padding: 20;
     font-family: Arial, sans-serif;

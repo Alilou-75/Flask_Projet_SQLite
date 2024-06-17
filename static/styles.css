@@ -70,5 +70,7 @@ p,nav {
         h2 {
             text-align: center;
         }
-        
+        th {
+            background-color: rgb(98, 98, 230);
+        }
 

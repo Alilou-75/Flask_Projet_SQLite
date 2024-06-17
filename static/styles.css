@@ -76,6 +76,8 @@ p,nav {
 fieldset{
     background:linear-gradient(to bottom right, rgb(192, 192, 191), rgb(51, 35, 26), rgb(28, 58, 141));
     border-radius: 10px;
+    width: 60%;
+    height: 40%;
 }
 button {
     border: 0;

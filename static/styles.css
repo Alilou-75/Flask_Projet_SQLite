@@ -82,7 +82,7 @@ fieldset{
     padding-left: 20px;
     box-shadow: 3px 3px 3px black;
 }
-button {
+.btn-form {
     border: 0;
     line-height: 2.1;
     font-size: 0.8rem;
@@ -99,11 +99,11 @@ button {
     margin-top: 4%;
     margin-bottom: 20px;
 }
-button:hover {
+.btn-form:hover {
  background-color: rgb(159, 158, 160);
 }
 
-button:active {
+.btn-form:active {
  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
    }

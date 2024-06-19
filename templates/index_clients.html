@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Delete Client</title>
+    <script>
+        function deleteClient(clientId) {
+            fetch(`/delete_client/${clientId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Client deleted successfully') {
+                    alert('Client deleted successfully');
+                } else {
+                    alert('Client not found');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Clients</h1>
+    <button onclick="deleteClient(1)">Delete Client with ID 1</button>
+</body>
+</html>

@@ -186,7 +186,7 @@ def delete_livre():
 @app.route('/delete_livre/<int:post_ID_livre>', methods=['DELETE'])
 def delete_livre(post_ID_livre):
     conn = sqlite3.connect('database2.db')
-     cursor = conn.cursor()
+    cursor = conn.cursor()
     cursor.execute("DELETE FROM livres WHERE ID_livre = ?", (post_ID_livre,))
     conn.commit()
     if cursor.rowcount == 0:

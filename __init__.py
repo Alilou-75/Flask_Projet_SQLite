@@ -182,6 +182,18 @@ def delete_livre():
     data = cursor.fetchall()
     conn.close()
     return render_template('index.html', data=data)
+
+@app.route('/delete_livre/<int:post_ID_livre>', methods=['DELETE'])
+def delete_livre(post_ID_livre):
+    conn = sqlite3.connect('database2.db')
+     cursor = conn.cursor()
+    cursor.execute("DELETE FROM livres WHERE ID_livre = ?", (post_ID_livre,))
+    conn.commit()
+    if cursor.rowcount == 0:
+        return jsonify({'message': 'Client not found'}), 404
+    return jsonify({'message': 'Client deleted successfully'}), 200
+if __name__ == '__main__':
+    app.run(debug=True)
     
 @app.route('/supprimer_livre/<int:post_ID_livre>')
 def supprimer_livre():

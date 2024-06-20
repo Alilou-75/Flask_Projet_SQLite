@@ -108,35 +108,7 @@ if __name__ == "__main__":
   app.run(debug=True)
     # Formulaire de suppression d'un client:
 
-DATABASE = 'database.db'
 
-def get_db():
-    db = sqlite3.connect(DATABASE)
-    return db
-
-def close_db(db):
-    if db is not None:
-        db.close()
-#Route pour supprimer un client:
-
-@app.route('/delete_client/<int:post_id>', methods=['DELETE'])
-def delete_client(post_id):
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute("DELETE FROM clients WHERE id = ?", (post_id,))
-    db.commit()
-    if cursor.rowcount == 0:
-        close_db(db)
-        return jsonify({'message': 'Client not found'}), 404
-    close_db(db)
-    return jsonify({'message': 'Client deleted successfully'}), 200
-
-@app.route('/supprimer_client')
-def index_clients():
-    return render_template('index_clients.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 #======================================================================================( Projet de Bibliothèque )====================================================================================
 

@@ -178,42 +178,6 @@ if __name__ == "__main__":
 # Route pour supprimer un livre:
 #*******************************
 
-@app.route('/delete_livre/')
-def delete_livre():
-    conn = sqlite3.connect('database2.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM Livres;')
-    data = cursor.fetchall()
-    conn.close()
-    return render_template('index.html', data=data)
-
-@app.route('/delete_livre/<int:post_ID_livre>', methods=['DELETE'])
-def delete_livre(post_ID_livre):
-    conn = sqlite3.connect('database2.db')
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM livres WHERE ID_livre = ?", (post_ID_livre,))
-    conn.commit()
-    if cursor.rowcount == 0:
-        return jsonify({'message': 'Client not found'}), 404
-    return jsonify({'message': 'Client deleted successfully'}), 200
-if __name__ == '__main__':
-    app.run(debug=True)
-    
-@app.route('/supprimer_livre/<int:post_ID_livre>')
-def supprimer_livre():
-    conn = sqlite3.connect('database2.db')
-    conn.execute('DELETE * FROM livres WHERE ID_livre = ?', (post_ID_livre,))
-    conn.commit()
-    conn.close()
-    flash('Le livre avec l\'id {post_ID_livre} a été supprimé avec succès!', 'success')
-    return redirect(url_for('/livres/'))
-if __name__ == '__main__':
-    # Création de la table si elle n'existe pas déjà
-    conn = sqlite3.connect('database2.db')
-    conn.execute('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, titre TEXT NOT NULL, auteur TEXT NOT NULL, année_publication INTEGER, quantité INTEGER)')
-    conn.commit()
-    conn.close()
-    app.run(debug=True)
 
 
 

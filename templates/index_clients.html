@@ -7,7 +7,7 @@
     <title>Delete Client</title>
     <script>
         function deleteClient(clientId) {
-            fetch(`/delete_client/${clientId}`, {
+            fetch(`/delete_client/${post_id}`, {
                 method: 'DELETE'
             })
             .then(response => response.json())

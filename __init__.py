@@ -106,11 +106,25 @@ def enregistrer_client():
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
-    # Formulaire de suppression d'un client:
+    
+    # Route pour suppression d'un client par son Numero:
+
+@app.route('/delete_client/<int:client_id>', methods=['POST'])
+def delete_client(client_id):
+    conn = sqlite3.connect(database.db)
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM clients WHERE id = ?', (client_id,))
+    conn.commit()
+    conn.close()
+    flash('Client supprimé avec succès')
+    return redirect(url_for('ReadBDD'))
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 
-#======================================================================================( Projet de Bibliothèque )====================================================================================
+#================================================( Projet de Bibliothèque )============================================================
 
  # Consulter la liste des Livres:
  # ==============================

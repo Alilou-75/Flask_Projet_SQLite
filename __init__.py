@@ -119,11 +119,11 @@ def close_db(db):
         db.close()
 #Route pour supprimer un client:
 
-@app.route('/delete_client/<int:client_id>', methods=['DELETE'])
-def delete_client(client_id):
+@app.route('/delete_client/<int:post_id>', methods=['DELETE'])
+def delete_client(post_id):
     db = get_db()
     cursor = db.cursor()
-    cursor.execute("DELETE FROM clients WHERE id = ?", (client_id,))
+    cursor.execute("DELETE FROM clients WHERE id = ?", (post_id,))
     db.commit()
     if cursor.rowcount == 0:
         close_db(db)

@@ -199,7 +199,7 @@ if __name__ == "__main__":
 def delete_livre(post_ID_livre):
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM livres WHERE id = ?', (post_ID_livre,))
+    cursor.execute('DELETE FROM livres WHERE ID_livre = ?', (post_ID_livre,))
     conn.commit()
     conn.close()
     flash('Livre supprimé avec succès')

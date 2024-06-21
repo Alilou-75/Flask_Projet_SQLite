@@ -26,12 +26,16 @@
             <td>{{ row[2] }}</td>
             <td>{{ row[3] }}</td>
             <td>{{ row[4] }}</td>
-            <td><button class="delete-btn">Supprimer</button></td>
+            <td>
+                <form action="{{ url_for('delete_livre', post_ID_livre=row[0]) }}" method="post">
+            <button class="delete-btn">Supprimer</button>
+                </form>
+            </td>
         </tr>
-        {% endfor %}
+        {% endfor %}     
         </tbody>   
     </table>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+     <a class="button" href="{{ url_for('formulaire_livre') }}">Ajouter un nouveau livre</a>
 </body>
 </html>
 

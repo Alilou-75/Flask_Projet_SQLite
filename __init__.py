@@ -208,7 +208,16 @@ def delete_livre(post_ID_livre):
 if __name__ == "__main__":
     app.run(debug=True)
 
-
+ # Consulter la liste des Livres disponibles:
+ # ==============================
+@app.route('/livres_dispos/')
+def ReadBDD3():
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Livres  WHERE Quantité > 0')
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('read_data2.html', data=data)
 
 
 

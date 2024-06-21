@@ -109,4 +109,7 @@ fieldset{
    }
 input {
     border-radius: 7px;
+    height: 10px;
+    width: auto;
+    margin-bottom: 20px;
 }

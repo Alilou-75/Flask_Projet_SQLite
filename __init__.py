@@ -209,15 +209,19 @@ if __name__ == "__main__":
     app.run(debug=True)
 
  # Consulter la liste des Livres disponibles:
- # ==============================
-@app.route('/livres_dispos/')
-def ReadBDD3():
+ # ==========================================
+@app.route('/search_livres', methods=['GET'])
+def search_livres():
+    query = request.args.get('query')
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM Livres  WHERE Quantité_livre > 0')
+    cursor.execute("SELECT * FROM livres WHERE titre LIKE ? OR auteur LIKE ?", ('%' + query + '%', '%' + query + '%'))
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data2.html', data=data)
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 

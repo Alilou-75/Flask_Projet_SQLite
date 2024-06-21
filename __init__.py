@@ -17,7 +17,9 @@ def est_authentifie():
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
-
+    
+# Route pour afficher la tempirature à Paris:
+# ==========================================
 @app.route('/graphique')
 def températures():
     return render_template('graphique.html')
@@ -46,6 +48,8 @@ def authentification():
             return render_template('formulaire_authentification.html', error=True)
 
     return render_template('formulaire_authentification.html', error=False)
+    
+#================================================( Base de données Clients )============================================================
 
 # Ajout d'une route pour consulter la liste des Clients
 # =====================================================
@@ -106,9 +110,9 @@ def enregistrer_client():
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
-    #==================================================================================================
-    # Route pour suppression d'un client par son Numero:
-
+    
+# Route pour suppression d'un client par son Numero:
+#==================================================
 @app.route('/delete_client/<int:client_id>', methods=['POST'])
 def delete_client(client_id):
     conn = sqlite3.connect('database.db')
@@ -121,8 +125,6 @@ def delete_client(client_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    #==================================================================================================
 
 #================================================( Projet de Bibliothèque )============================================================
 
@@ -191,6 +193,20 @@ if __name__ == "__main__":
     
 # Route pour supprimer un livre:
 #*******************************
+# Route pour suppression d'un client par son Numero:
+#==================================================
+@app.route('/delete_livre/<int:post_ID_livre>', methods=['POST'])
+def delete_client(post_ID_livre):
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM livres WHERE id = ?', (post_ID_livre,))
+    conn.commit()
+    conn.close()
+    flash('Livre supprimé avec succès')
+    return redirect('/livres/')
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 

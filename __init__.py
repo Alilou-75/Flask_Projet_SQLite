@@ -56,7 +56,7 @@ def ReadBDD():
     cursor.execute('SELECT * FROM clients;')
     data = cursor.fetchall()
     conn.close()
-    return render_template('read_data.html', data=data)
+    return render_template('read_data.html', clients=clients)
 
 # Selectionner un client par son Numero:
 # =====================================

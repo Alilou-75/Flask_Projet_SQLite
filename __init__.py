@@ -109,11 +109,11 @@ if __name__ == "__main__":
     
     # Route pour suppression d'un client par son Numero:
 
-@app.route('/delete_client/<int:client_id>', methods=['POST'])
-def delete_client(client_id):
+@app.route('/delete_client/<int:post_id>', methods=['POST'])
+def delete_client(post_id):
     conn = sqlite3.connect(database.db)
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM clients WHERE id = ?', (client_id,))
+    cursor.execute('DELETE FROM clients WHERE id = ?', (post_id,))
     conn.commit()
     conn.close()
     flash('Client supprimé avec succès')

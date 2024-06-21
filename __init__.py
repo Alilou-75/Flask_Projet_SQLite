@@ -111,7 +111,7 @@ if __name__ == "__main__":
 
 @app.route('/delete_client/<int:client_id>', methods=['POST'])
 def delete_client(client_id):
-    conn = sqlite3.connect(database.db)
+    conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('DELETE FROM clients WHERE id = ?', (client_id,))
     conn.commit()

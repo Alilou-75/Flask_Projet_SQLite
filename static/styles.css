@@ -110,6 +110,5 @@ fieldset{
 input {
     border-radius: 7px;
     height: 25px;
-    width: auto;
-    margin-reight: 20px;
+    width: 120px;
 }

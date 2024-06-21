@@ -106,9 +106,11 @@ def enregistrer_client():
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
-    
+    #==================================================================================================
     # Route pour suppression d'un client par son Numero:
-
+@app.route('/delete_client/<int:post_id>', methods=['GET'])
+def formulaire_client():
+    return render_template('formulaire.html')  # afficher le formulaire
 @app.route('/delete_client/<int:post_id>', methods=['POST'])
 def delete_client(post_id):
     conn = sqlite3.connect(database.db)
@@ -122,7 +124,7 @@ def delete_client(post_id):
 if __name__ == "__main__":
     app.run(debug=True)
 
-
+    #==================================================================================================
 
 #================================================( Projet de Bibliothèque )============================================================
 

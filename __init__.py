@@ -54,21 +54,21 @@ def ReadBDD():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients;')
-    data = cursor.fetchall()
+    clients = cursor.fetchall()
     conn.close()
-    return render_template('read_data.html', data=data)
+    return render_template('read_data.html', clients=clients)
 
 # Selectionner un client par son Numero:
 # =====================================
-@app.route('/fiche_client/<int:post_id>')
-def Readfiche(post_id):
+@app.route('/fiche_client/<int:client_id>')
+def Readfiche(client_id):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
-    data = cursor.fetchall()
+    cursor.execute('SELECT * FROM clients WHERE id = ?', (client_id,))
+    clients = cursor.fetchall()
     conn.close()
     # Rendre le template HTML et transmettre les données
-    return render_template('read_data.html', data=data)
+    return render_template('read_data.html', clients=clients)
     
  # Selectionner un client par son Nom:
  # ==================================
@@ -78,10 +78,10 @@ def Readfiche1(nom):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients WHERE nom = ?', (nom,))
-    data = cursor.fetchall()
+    clients = cursor.fetchall()
     conn.close()
     # Rendre le template HTML et transmettre les données
-    return render_template('read_data.html', data=data)
+    return render_template('read_data.html', clients=clients)
 
  # Formulaire d'enregistrement d'un client:
  # =======================================

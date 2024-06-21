@@ -214,7 +214,7 @@ if __name__ == "__main__":
 def ReadBDD3():
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM Livres  WHERE quantite > 0')
+    cursor.execute('SELECT * FROM Livres  WHERE Quantité_livre > 0')
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data2.html', data=data)

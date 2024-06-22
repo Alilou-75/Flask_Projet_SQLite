@@ -223,10 +223,56 @@ def search_livres():
 if __name__ == "__main__":
     app.run(debug=True)
 
+#==============================( La gestion des utilisateurs )===============================
+ # Formulaire d'enregistrement d'un utilisateur:
+ # =============================================
+@app.route('/enregistrer_user', methods=['GET'])
+def formulaire_user():
+    return render_template('formulaire_user.html')  # afficher le formulaire
 
+@app.route('/enregistrer_user', methods=['POST'])
+def enregistrer_user():
+    nom = request.form['nom']
+    prenom = request.form['prenom']
+    adresse = request.form['adresse']
+    # Connexion à la base de données
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
 
+    # Exécution de la requête SQL pour insérer un nouveau client
+    cursor.execute('INSERT INTO clients (nom, prenom, adresse) VALUES (?, ?, ?)', (nom, prenom, adresse))
+    conn.commit()
+    conn.close()
+    return redirect('/utilisateurs/')  # Rediriger vers la page d'accueil après l'enregistrement
+                                                                                                                                       
+if __name__ == "__main__":
+  app.run(debug=True)
+    
+# Route pour consulter la liste des utilisateurs:
+# ===============================================
+@app.route('/utilisateurs/')
+def ReadBDDu():
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM utilisateurs;')
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('read_data_user.html', data=data)
 
+# Route pour suppression un utilisateur:
+#=======================================
+@app.route('/delete_user/<int:post_ID_user>', methods=['POST'])
+def delete_user(post_ID_user):
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (post_ID_user,))
+    conn.commit()
+    conn.close()
+    flash('Utilisateur supprimé avec succès')
+    return redirect('/utilisateurs/')
 
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 

@@ -6,7 +6,7 @@ CREATE TABLE livres (
     Annee_publication INTEGER,
     Quantite INTEGER
 );
-
+DROP TABLE IF EXISTS Utilisateurs;
 CREATE TABLE Utilisateurs (
     ID_utilisateur INTEGER PRIMARY KEY,
     Nom VARCHAR(255),
@@ -14,7 +14,7 @@ CREATE TABLE Utilisateurs (
     Email VARCHAR(255),
     Date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+DROP TABLE IF EXISTS Emprunts;
 CREATE TABLE Emprunts (
     ID_emprunt INTEGER PRIMARY KEY,
     ID_utilisateur INTEGER,

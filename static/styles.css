@@ -35,6 +35,7 @@ th {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 3px;
+    margin-bottom: 0;
 }
  
 .delete-btn:hover {

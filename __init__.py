@@ -236,11 +236,11 @@ def enregistrer_user():
     prenom = request.form['prenom']
     adresse = request.form['adresse']
     # Connexion à la base de données
-    conn = sqlite3.connect('database2.db')
+    conn = sqlite3.connect('database3.db')
     cursor = conn.cursor()
 
     # Exécution de la requête SQL pour insérer un nouveau client
-    cursor.execute('INSERT INTO clients (nom, prenom, adresse) VALUES (?, ?, ?)', (nom, prenom, adresse))
+    cursor.execute('INSERT INTO utilisateurs (nom, prenom, adresse) VALUES (?, ?, ?)', (nom, prenom, adresse))
     conn.commit()
     conn.close()
     return redirect('/utilisateurs/')  # Rediriger vers la page d'accueil après l'enregistrement
@@ -252,7 +252,7 @@ if __name__ == "__main__":
 # ===============================================
 @app.route('/utilisateurs/')
 def ReadBDDu():
-    conn = sqlite3.connect('database2.db')
+    conn = sqlite3.connect('database3.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM utilisateurs;')
     data = cursor.fetchall()
@@ -263,7 +263,7 @@ def ReadBDDu():
 #=======================================
 @app.route('/delete_user/<int:post_ID_user>', methods=['POST'])
 def delete_user(post_ID_user):
-    conn = sqlite3.connect('database2.db')
+    conn = sqlite3.connect('database3.db')
     cursor = conn.cursor()
     cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (post_ID_user,))
     conn.commit()

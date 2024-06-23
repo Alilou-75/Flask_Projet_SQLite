@@ -65,7 +65,7 @@ nav {
         box-shadow: 3px 3px 3px black; 
       }
 .button:hover {
-    background-color: rgb(159, 158, 160);
+    background-color: #110861;
 }
 p,nav {
             margin-left: 20px;

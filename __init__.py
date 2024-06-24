@@ -191,10 +191,9 @@ def enregistrer_livre():
 if __name__ == "__main__":
   app.run(debug=True)
     
-# Route pour supprimer un livre:
-#*******************************
-# Route pour suppression d'un client par son Numero:
-#==================================================
+# Route pour suppression d'un livre par son Numero:
+#=================================================
+
 @app.route('/delete_livre/<int:post_ID_livre>', methods=['POST'])
 def delete_livre(post_ID_livre):
     conn = sqlite3.connect('database2.db')
@@ -222,6 +221,51 @@ def search_livres():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+# Route pour afficher les livres disponibles:
+#============================================
+@app.route('/livres_disponibles')
+def formulaire_livres():
+    return render_template('livres_disponibles.html')
+@app.route('/livres_disponibles')
+def livres_disponibles():
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM livres WHERE quantite > 0')
+    livres = cursor.fetchall()
+    conn.close()
+    return render_template('livres_disponibles.html', livres=livres)
+
+#Route pour emprunter un livre:
+#==============================
+@app.route('/emprunter_livre/<int:ID_livre>', methods=['POST'])
+def emprunter_livre(ID_livre):
+    ID_utilisateur = request.form['ID_utilisateur']
+    date_emprunt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+
+    # Vérifier la quantité disponible
+    cursor.execute('SELECT quantite FROM livres WHERE ID_livre = ?', (ID_livre,))
+    quantite = cursor.fetchone()[0]
+
+    if quantite > 0:
+        # Insérer l'emprunt
+        cursor.execute('''
+            INSERT INTO emprunts (ID_utilisateur, ID_livre, date_emprunt) 
+            VALUES (?, ?, ?)
+        ''', (ID_utilisateur, ID_livre, date_emprunt))
+
+        # Mettre à jour la quantité du livre
+        cursor.execute('UPDATE livres SET quantite = quantite - 1 WHERE ID_livre = ?', (ID_livre,))
+        conn.commit()
+        flash('Livre emprunté avec succès')
+    else:
+        flash('Le livre n\'est pas disponible')
+
+    conn.close()
+    return redirect('/livres_disponibles')
 
 #==============================( La gestion des utilisateurs )===============================
  # Formulaire d'enregistrement d'un utilisateur:

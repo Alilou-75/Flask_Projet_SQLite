@@ -186,7 +186,8 @@ def enregistrer_livre():
     cursor.execute("INSERT INTO livres (titre, auteur, annee_publication, quantite) VALUES (?, ?, ?, ?)", (titre, auteur, annee_publication, quantite))
     conn.commit()
     conn.close()
-    return redirect('/livres_disponibles/')  # Rediriger vers la page d'accueil après l'enregistrement
+    flash('Livre enregistré avec succès')
+    return redirect('/livres/')  # Rediriger vers la page d'accueil après l'enregistrement
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)

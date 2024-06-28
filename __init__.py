@@ -4,6 +4,7 @@ from flask import json
 from urllib.request import urlopen
 from werkzeug.utils import secure_filename
 import sqlite3
+from datetime import datetime
 
 app = Flask(__name__)                                                                                                                  
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'  # Clé secrète pour les sessions
@@ -141,11 +142,11 @@ def ReadBDD2():
 
 # Selectionner un livre par son Numero:
 # =====================================
-@app.route('/fiche_livre/<int:post_ID_livre>')
+@app.route('/fiche_livre/<int:ID_livre>')
 def Readfiche2(post_ID_livre):
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM livres WHERE ID_livre = ?', (post_ID_livre,))
+    cursor.execute('SELECT * FROM livres WHERE ID_livre = ?', (ID_livre,))
     data = cursor.fetchall()
     conn.close()
     # Rendre le template HTML et transmettre les données
@@ -167,11 +168,8 @@ def Readfiche3(titre):
 
  # Formulaire d'enregistrement d'un livre:
  # =======================================
-@app.route('/enregistrer_livre', methods=['GET'])
-def formulaire_livre():
-    return render_template('formulaire2.html')  # afficher le formulaire
 
-@app.route('/enregistrer_livre', methods=['POST'])
+@app.route('/enregistrer_livre', methods=['GET', 'POST'])
 def enregistrer_livre():
     titre = request.form['titre']
     auteur = request.form['auteur']
@@ -188,25 +186,20 @@ def enregistrer_livre():
     conn.close()
     flash('Livre enregistré avec succès')
     return redirect('/livres/')  # Rediriger vers la page d'accueil après l'enregistrement
-                                                                                                                                       
-if __name__ == "__main__":
-  app.run(debug=True)
+    return render_template('formulaire2.html')                                                                                                                                   
     
 # Route pour suppression d'un livre par son Numero:
 #=================================================
 
-@app.route('/delete_livre/<int:post_ID_livre>', methods=['POST'])
-def delete_livre(post_ID_livre):
+@app.route('/delete_livre/<int:ID_livre>', methods=['POST'])
+def delete_livre(ID_livre):
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM livres WHERE ID_livre = ?', (post_ID_livre,))
+    cursor.execute('DELETE FROM livres WHERE ID_livre = ?', (ID_livre,))
     conn.commit()
     conn.close()
     flash('Livre supprimé avec succès')
     return redirect('/livres/')
-
-if __name__ == "__main__":
-    app.run(debug=True)
 
  # Consulter la liste des Livres disponibles:
  # ==========================================
@@ -220,14 +213,9 @@ def search_livres():
     conn.close()
     return render_template('read_data2.html', data=data)
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 # Route pour afficher les livres disponibles:
 #============================================
-@app.route('/livres_disponibles')
-def formulaire_livres():
-    return render_template('livres_disponibles.html')
+
 @app.route('/livres_disponibles')
 def livres_disponibles():
     conn = sqlite3.connect('database2.db')
@@ -241,7 +229,7 @@ def livres_disponibles():
 #==============================
 @app.route('/emprunter_livre/<int:ID_livre>', methods=['POST'])
 def emprunter_livre(ID_livre):
-    ID_utilisateur = request.form['ID_utilisateur']
+    ID_utilisateur = request.form['ID_user']
     date_emprunt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     conn = sqlite3.connect('database2.db')
@@ -254,9 +242,9 @@ def emprunter_livre(ID_livre):
     if quantite > 0:
         # Insérer l'emprunt
         cursor.execute('''
-            INSERT INTO emprunts (ID_utilisateur, ID_livre, date_emprunt) 
+            INSERT INTO emprunts (ID_user, ID_livre, date_emprunt) 
             VALUES (?, ?, ?)
-        ''', (ID_utilisateur, ID_livre, date_emprunt))
+        ''', (ID_user, ID_livre, date_emprunt))
 
         # Mettre à jour la quantité du livre
         cursor.execute('UPDATE livres SET quantite = quantite - 1 WHERE ID_livre = ?', (ID_livre,))
@@ -271,33 +259,29 @@ def emprunter_livre(ID_livre):
 #==============================( La gestion des utilisateurs )===============================
  # Formulaire d'enregistrement d'un utilisateur:
  # =============================================
-@app.route('/enregistrer_user', methods=['GET'])
-def formulaire_user():
-    return render_template('formulaire_user.html')  # afficher le formulaire
 
-@app.route('/enregistrer_user', methods=['POST'])
+@app.route('/enregistrer_user', methods=['GET', 'POST'])
 def enregistrer_user():
-    nom = request.form['nom']
-    prenom = request.form['prenom']
-    adresse = request.form['adresse']
-    # Connexion à la base de données
-    conn = sqlite3.connect('database3.db')
-    cursor = conn.cursor()
-
-    # Exécution de la requête SQL pour insérer un nouveau client
-    cursor.execute('INSERT INTO utilisateurs (nom, prenom, adresse) VALUES (?, ?, ?)', (nom, prenom, adresse))
-    conn.commit()
-    conn.close()
-    return redirect('/utilisateurs/')  # Rediriger vers la page d'accueil après l'enregistrement
-                                                                                                                                       
-if __name__ == "__main__":
-  app.run(debug=True)
-    
+    if request.method == 'POST':
+        nom = request.form['nom']
+        prenom = request.form['prenom']
+        adresse = request.form['adresse']
+        
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO utilisateurs (nom, prenom, adresse) VALUES (?, ?, ?)', 
+                       (nom, prenom, adresse))
+        conn.commit()
+        conn.close()
+        flash('Utilisateur enregistré avec succès')
+        return redirect('/utilisateurs/')
+    return render_template('formulaire_user.html')
+                                                                                                                                          
 # Route pour consulter la liste des utilisateurs:
 # ===============================================
 @app.route('/utilisateurs/')
 def ReadBDDu():
-    conn = sqlite3.connect('database3.db')
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM utilisateurs;')
     data = cursor.fetchall()
@@ -306,11 +290,11 @@ def ReadBDDu():
 
 # Route pour suppression un utilisateur:
 #=======================================
-@app.route('/delete_user/<int:post_ID_user>', methods=['POST'])
-def delete_user(post_ID_user):
-    conn = sqlite3.connect('database3.db')
+@app.route('/delete_user/<int:ID_user>', methods=['POST'])
+def delete_user(ID_user):
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (post_ID_user,))
+    cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (ID_user,))
     conn.commit()
     conn.close()
     flash('Utilisateur supprimé avec succès')

@@ -1,46 +1,40 @@
 import sqlite3
 
-def create_database():
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
 
-    # Table des livres
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS livres (
-            ID_livre INTEGER PRIMARY KEY AUTOINCREMENT,
-            titre TEXT NOT NULL,
-            auteur TEXT NOT NULL,
-            annee_publication INTEGER NOT NULL,
-            quantite INTEGER NOT NULL
-        )
-    ''')
+   # Création de la table 'livres'
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS livres (
+    ID_livre INTEGER PRIMARY KEY AUTOINCREMENT,
+    titre TEXT,
+    auteur TEXT,
+    annee_publication INTEGER,
+    quantite INTEGER
+)
+''')
 
-    # Table des utilisateurs
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS utilisateurs (
-            ID_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
-            nom TEXT NOT NULL,
-            prenom TEXT NOT NULL,
-            email TEXT NOT NULL UNIQUE
-        )
-    ''')
+# Création de la table 'utilisateurs'
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS utilisateurs (
+    ID_user INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT,
+    prenom TEXT,
+    adresse TEXT
+)
+''')
 
-    # Table des emprunts
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS emprunts (
-            ID_emprunt INTEGER PRIMARY KEY AUTOINCREMENT,
-            ID_utilisateur INTEGER NOT NULL,
-            ID_livre INTEGER NOT NULL,
-            date_emprunt TEXT NOT NULL,
-            date_retour TEXT,
-            FOREIGN KEY (ID_utilisateur) REFERENCES utilisateurs(ID_utilisateur),
-            FOREIGN KEY (ID_livre) REFERENCES livres(ID_livre)
-        )
-    ''')
+# Création de la table 'emprunts'
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS emprunts (
+    ID_emprunt INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID_user INTEGER,
+    ID_livre INTEGER,
+    date_emprunt TEXT,
+    FOREIGN KEY (ID_user) REFERENCES utilisateurs (ID_user),
+    FOREIGN KEY (ID_livre) REFERENCES livres (ID_livre)
+)
+''')
 
-    conn.commit()
-    conn.close()
-
-if __name__ == '__main__':
-    create_database()
-    print("Les bases de données ont été créées avec succès.")
+conn.commit()
+conn.close()

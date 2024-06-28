@@ -11,7 +11,7 @@
     {% for livre in livres %}
         <li>{{ livre[1] }} par {{ livre[2] }} - {{ livre[4] }} exemplaire(s) disponible(s)
             <form action="/emprunter_livre/{{ livre[0] }}" method="POST">
-                <input type="hidden" name="ID_utilisateur" value="1"> <!-- ID utilisateur doit être dynamique -->
+                <input type="hidden" name="ID_user" value="1"> <!-- ID utilisateur doit être dynamique -->
                 <button type="submit">Emprunter</button>
             </form>
         </li>

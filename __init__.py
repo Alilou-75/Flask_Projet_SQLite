@@ -270,8 +270,7 @@ def enregistrer_user():
         
         conn = sqlite3.connect('database2.db')
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO utilisateurs (nom, prenom, adresse) VALUES (?, ?, ?)', 
-                       (nom, prenom, adresse))
+        cursor.execute("INSERT INTO utilisateurs (nom, prenom, adresse) VALUES (?, ?, ?)", (nom, prenom, adresse))
         conn.commit()
         conn.close()
         flash('Utilisateur enregistré avec succès')

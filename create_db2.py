@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
     ID_user INTEGER PRIMARY KEY AUTOINCREMENT,
     nom TEXT,
     prenom TEXT,
-    adresse TEXT
+    adresse TEXT,
+    Date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 ''')
 

@@ -171,22 +171,23 @@ def Readfiche3(titre):
 
 @app.route('/enregistrer_livre', methods=['GET', 'POST'])
 def enregistrer_livre():
-    titre = request.form['titre']
-    auteur = request.form['auteur']
-    annee_publication = request.form['annee_publication']
-    quantite = request.form['quantite']
+    if request.method == 'POST':
+        titre = request.form['titre']
+        auteur = request.form['auteur']
+        annee_publication = request.form['annee_publication']
+        quantite = request.form['quantite']
+        
+        # Connexion à la base de données
+        conn = sqlite3.connect('database2.db')
+        cursor = conn.cursor()
 
-    # Connexion à la base de données
-    conn = sqlite3.connect('database2.db')
-    cursor = conn.cursor()
-
-    # Exécution de la requête SQL pour insérer un nouveau client
-    cursor.execute("INSERT INTO livres (titre, auteur, annee_publication, quantite) VALUES (?, ?, ?, ?)", (titre, auteur, annee_publication, quantite))
-    conn.commit()
-    conn.close()
-    flash('Livre enregistré avec succès')
-    return redirect('/livres/')  # Rediriger vers la page d'accueil après l'enregistrement
-    return render_template('formulaire2.html')                                                                                                                                   
+        # Exécution de la requête SQL pour insérer un nouveau livre
+        cursor.execute("INSERT INTO livres (titre, auteur, annee_publication, quantite) VALUES (?, ?, ?, ?)", (titre, auteur, annee_publication, quantite))
+        conn.commit()
+        conn.close()
+        flash('Livre enregistré avec succès')
+        return redirect('/livres/') # Rediriger vers la page d'accueil après l'enregistrement
+    return render_template('formulaire2.html')                                                                                                          
     
 # Route pour suppression d'un livre par son Numero:
 #=================================================
@@ -267,7 +268,7 @@ def enregistrer_user():
         prenom = request.form['prenom']
         adresse = request.form['adresse']
         
-        conn = sqlite3.connect('database.db')
+        conn = sqlite3.connect('database2.db')
         cursor = conn.cursor()
         cursor.execute('INSERT INTO utilisateurs (nom, prenom, adresse) VALUES (?, ?, ?)', 
                        (nom, prenom, adresse))

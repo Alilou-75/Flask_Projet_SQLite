@@ -18,7 +18,7 @@ def drop_table(db_name, table_name):
 
 if __name__ == "__main__":
     db_name = 'database2.db'
-    table_name = 'utilisateurs'
+    table_name = 'Emprunts'
     
     drop_table(db_name, table_name)
     print(f"Table '{table_name}' supprimée avec succès de la base de données '{db_name}'.")

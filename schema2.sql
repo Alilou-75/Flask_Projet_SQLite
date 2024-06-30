@@ -8,6 +8,7 @@ CREATE TABLE livres (
 );
 CREATE TABLE IF NOT EXISTS utilisateurs (
     ID_user INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     nom TEXT NOT NULL,
     prenom TEXT NOT NULL,
     adresse TEXT NOT NULL,
@@ -26,5 +27,4 @@ CREATE TABLE Emprunts (
     FOREIGN KEY (ID_user) REFERENCES Utilisateurs(ID_user),
     FOREIGN KEY (ID_livre) REFERENCES Livres(ID_livre)
 );
-PRAGMA table_info(utilisateurs);
 

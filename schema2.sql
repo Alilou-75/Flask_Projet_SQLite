@@ -6,13 +6,14 @@ CREATE TABLE livres (
     Annee_publication INTEGER,
     Quantite INTEGER
 );
-DROP TABLE IF EXISTS Utilisateurs;
-CREATE TABLE Utilisateurs (
-    ID_user INTEGER PRIMARY KEY,
-    Nom VARCHAR(255),
-    Prenom VARCHAR(255),
-    Adresse VARCHAR(255),
+CREATE TABLE IF NOT EXISTS utilisateurs (
+    ID_user INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    adresse TEXT NOT NULL,
     Date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 );
 DROP TABLE IF EXISTS Emprunts;
 CREATE TABLE Emprunts (
@@ -25,3 +26,5 @@ CREATE TABLE Emprunts (
     FOREIGN KEY (ID_user) REFERENCES Utilisateurs(ID_user),
     FOREIGN KEY (ID_livre) REFERENCES Livres(ID_livre)
 );
+PRAGMA table_info(utilisateurs);
+

@@ -21,4 +21,4 @@ if __name__ == "__main__":
     table_name = 'Emprunts'
     
     drop_table(db_name, table_name)
-    print(f"Table '{table_name}' supprimée avec succès de la base de données '{db_name}'.")
+    print(f"La table '{table_name}' a été supprimée avec succès de la base de données '{db_name}'.")

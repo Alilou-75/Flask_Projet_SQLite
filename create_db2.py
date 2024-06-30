@@ -11,11 +11,6 @@ cur = connection.cursor()
 cur.execute("INSERT INTO Livres (Titre, Auteur, Annee_publication, Quantite) VALUES (?, ?, ?, ?)",('Emilie', 'Victor', 2024, 10))
 cur.execute("INSERT INTO Livres (Titre, Auteur, Annee_publication, Quantite) VALUES (?, ?, ?, ?)",('Didier', 'Laurent', 2023, 5))
 
-with open('schema3.sql') as f:
-    connection.executescript(f.read())
-
-cur = connection.cursor()
-
 # Création de la table 'utilisateurs'
 cur.execute("INSERT INTO Utilisateurs (Nom, Prenom, Adresse) VALUES (?, ?, ?)",('SELLAM', 'Ali', '239, avenue Gambetta, 75020 Paris'))
 cur.execute("INSERT INTO Utilisateurs (Nom, Prenom, Adresse) VALUES (?, ?, ?)",('LEROUX', 'Lucas', '456, Avenue du Soleil, 31000 Toulouse'))

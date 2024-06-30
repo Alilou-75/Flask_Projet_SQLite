@@ -303,26 +303,6 @@ def delete_user(ID_user):
 if __name__ == "__main__":
     app.run(debug=True)
 
-import sqlite3
-
-# Ouvrir une connexion à la base de données SQLite
-conn = sqlite3.connect('database2.db')
-
-# Créer un curseur
-cursor = conn.cursor()
-
-# Exécuter une commande SQL pour afficher la structure de la table 'utilisateurs'
-cursor.execute('PRAGMA table_info(utilisateurs)')
-
-# Récupérer les résultats
-columns = cursor.fetchall()
-
-# Afficher les résultats
-for column in columns:
-    print(column)
-
-# Fermer la connexion à la base de données
-conn.close()
 
 
 

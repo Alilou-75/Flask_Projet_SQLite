@@ -9,7 +9,7 @@ def create_table(db_name):
     
    # Exécuter la commande pour créer la table Emprunts
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS utilisateurs (
+        CREATE TABLE IF NOT EXISTS Emprunts (
            ID_emprunt INTEGER PRIMARY KEY,
            ID_user INTEGER,
            ID_livre INTEGER,

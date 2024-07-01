@@ -24,6 +24,6 @@ def check_table_structure(db_name, table_name):
 if __name__ == "__main__":
     # Nom de la base de données et de la table à vérifier
     db_name = 'database2.db'
-    table_name = 'Emprunts'
+    table_name = 'utilisateurs'
     
     check_table_structure(db_name, table_name)

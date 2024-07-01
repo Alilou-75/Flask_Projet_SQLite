@@ -1,0 +1,35 @@
+<th><!DOCTYPE>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Livres empruntés</title>
+</head>
+<body>
+    <h1>Liste des livres empruntés</h1>
+    <table id="myTable">
+        <thead>
+        <tr>
+            <th>ID_emprunt</th>
+            <th>ID_user</th>
+            <th>ID_livre</th>
+            <th>Date_emprunt</th>
+            <th>Date_retour_prevue</th>
+            <th>Date_retour_effective</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+        </tr>
+        {% endfor %}     
+        </tbody>   
+    </table>
+</body>
+</html>

@@ -257,6 +257,17 @@ def emprunter_livre(ID_livre):
     conn.close()
     return redirect('/livres_disponibles')
 
+# Route pour consulter la liste des livres empruntés:
+# ==================================================
+@app.route('/livres_empruntés/')
+def ReadBDDEm():
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Emprunts;')
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('livres_empruntés.html', data=data)
+
 #==============================( La gestion des utilisateurs )===============================
  # Formulaire d'enregistrement d'un utilisateur:
  # =============================================

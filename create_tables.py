@@ -18,20 +18,7 @@ def create_table(db_name):
             Date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
-    # Exécuter la commande pour créer la table Emprunts
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS utilisateurs (
-           ID_emprunt INTEGER PRIMARY KEY,
-           ID_user INTEGER,
-           ID_livre INTEGER,
-           Date_emprunt DATE,
-           Date_retour_prevue DATE,
-           Date_retour_effective DATE,
-           FOREIGN KEY (ID_user) REFERENCES Utilisateurs(ID_user),
-           FOREIGN KEY (ID_livre) REFERENCES Livres(ID_livre)
-        )
-    ''')
-
+   
     # Sauvegarder les changements
     conn.commit()
     
@@ -42,4 +29,4 @@ if __name__ == "__main__":
     db_name = 'database2.db'
     create_table(db_name)
     print(f"La table 'utilisateurs' a été créée avec succès dans la base de données '{db_name}'.")
-    print(f"La table 'Emprunts' a été créée avec succès dans la base de données '{db_name}'.")
+   

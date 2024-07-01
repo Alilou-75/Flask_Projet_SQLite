@@ -18,7 +18,7 @@ cur.execute("INSERT INTO Utilisateurs (Nom, Prenom, Adresse) VALUES (?, ?, ?)",(
 cur.execute("INSERT INTO Utilisateurs (Nom, Prenom, Adresse) VALUES (?, ?, ?)",('LEFEVRE', 'Thomas', '333, Rue de la Paix, 75002 Paris'))
 
 # Création de la table 'emprunts'
-cur.execute("INSERT INTO emprunts (ID_emprunt, ID_user, ID_livre, date_emprunt, Date_retour_prevue, Date_retour_effective ) VALUES (?, ?, ?, ?, ?, ?)",(1, 1, 1))
+cur.execute("INSERT INTO Emprunts (ID_emprunt, ID_user, ID_livre, date_emprunt, Date_retour_prevue, Date_retour_effective ) VALUES (?, ?, ?, ?, ?, ?)",(1, 1, 1))
 
 
 conn.commit()

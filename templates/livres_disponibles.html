@@ -1,21 +1,41 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Livres Disponibles</title>
+    <title>Livres</title>
 </head>
 <body>
-    <h1>Livres Disponibles</h1>
-    <ul>
-    {% for livre in livres %}
-        <li>{{ livre[1] }} par {{ livre[2] }} - {{ livre[4] }} exemplaire(s) disponible(s)
-            <form action="/emprunter_livre/{{ livre[0] }}" method="POST">
+    <h1>Liste des Livres Disponibles</h1>
+     <!-- Formulaire de recherche -->
+    <form action="{{ url_for('emprunter_livre') }}" method="get">
+        <input type="text" name="query" placeholder="Rechercher un livre">
+        <input class="btn-form" type="submit" value="Rechercher">
+    </form>
+    <table id="myTable">
+       <thead>
+            <tr bgcolor="yellow">
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Quantité disponible</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+             {% for livre in livres %}
+        <tr>
+            <td>{{ livre[1] }}</td>
+            <td>{{ livre[2] }}</td>
+            <td>{{ livre[4] }}</td>
+            <td>
+               <form action="/emprunter_livre/{{ livre[0] }}" method="POST">
                 <input type="hidden" name="ID_user" value="1"> <!-- ID utilisateur doit être dynamique -->
                 <button type="submit">Emprunter</button>
             </form>
-        </li>
-    {% endfor %}
-    </ul>
+            </td>
+        </tr>
+        {% endfor %}     
+        </tbody>   
+    </table>
 </body>
 </html>

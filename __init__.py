@@ -230,7 +230,7 @@ def livres_disponibles():
 #==============================
 @app.route('/emprunter_livre/<int:ID_livre>', methods=['POST'])
 def emprunter_livre(ID_livre):
-    ID_utilisateur = request.form['ID_user']
+    ID_user = request.form['ID_user']
     date_emprunt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     conn = sqlite3.connect('database2.db')

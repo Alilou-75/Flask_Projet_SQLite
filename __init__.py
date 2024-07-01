@@ -217,7 +217,7 @@ def search_livres():
 # Route pour afficher les livres disponibles:
 #============================================
 
-@app.route('/livres_disponibles')
+@app.route('/livres_disponibles/')
 def livres_disponibles():
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()

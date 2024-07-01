@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Livres</title>
+    <title>Livres Disponibles</title>
 </head>
 <body>
     <h1>Liste des Livres Disponibles</h1>
@@ -25,8 +25,8 @@
             <td>{{ livre[4] }}</td>
             <td>
                <form action="/emprunter_livre/{{ livre[0] }}" method="POST">
-                <input type="hidden" name="ID_user" value="1"> <!-- ID utilisateur doit être dynamique -->
-                <button type="submit">Emprunter</button>
+                <input type="text" name="ID_user" value="1"> <!-- ID utilisateur doit être dynamique -->
+                <button class="btn-form" type="submit">Emprunter</button>
             </form>
             </td>
         </tr>

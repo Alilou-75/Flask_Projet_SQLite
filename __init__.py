@@ -216,9 +216,7 @@ def search_livres():
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data2.html', data=data)
-    else
-    return "Ce livre est en rupeture"
-
+    
 # Route pour afficher les livres disponibles:
 #============================================
 

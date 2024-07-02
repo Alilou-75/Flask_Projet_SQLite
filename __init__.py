@@ -243,9 +243,9 @@ def emprunter_livre(ID_livre):
     if quantite > 0:
         # Insérer l'emprunt
         cursor.execute('''
-            INSERT INTO emprunts (ID_user, ID_livre, date_emprunt) 
-            VALUES (?, ?, ?)
-        ''', (ID_user, ID_livre, date_emprunt))
+            INSERT INTO emprunts (ID_user, ID_livre, date_emprunt, Date_retour_prevue) 
+            VALUES (?, ?, ?, ?)
+        ''', (ID_user, ID_livre, date_emprunt, Date_retour_prevue))
 
         # Mettre à jour la quantité du livre
         cursor.execute('UPDATE livres SET quantite = quantite - 1 WHERE ID_livre = ?', (ID_livre,))
@@ -268,6 +268,22 @@ def ReadBDDEm():
     conn.close()
     return render_template('livres_empruntés.html', data=data)
 
+#Route pour valider l'emprunt d'un livre:
+#========================================
+@app.route('/emprunter_livre', methods=['GET', 'POST'])
+def emprunter_livre():
+    if request.method == 'POST':
+        Numéro utilisateur = request.form['ID_user']
+        Date retour = request.form['Date_retour_prevue']
+        
+        conn = sqlite3.connect('database2.db')
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO emprunts (ID_user, Date_retour_prevue) VALUES (?, ?)", (ID_user, Date_retour_prevue))
+        conn.commit()
+        conn.close()
+        return "Livre emprunté avec succès"
+        return redirect('/livres_empruntés/')
+    return render_template('emprunter_livre.html')
 
 
 #==============================( La gestion des utilisateurs )===============================

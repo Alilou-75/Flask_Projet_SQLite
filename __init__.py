@@ -250,11 +250,8 @@ def emprunter_livre(ID_livre):
         # Mettre à jour la quantité du livre
         cursor.execute('UPDATE livres SET quantite = quantite - 1 WHERE ID_livre = ?', (ID_livre,))
         conn.commit()
-        return "Livre emprunté avec succès"
-    else:
-        return "Le livre n\'est pas disponible"
-
     conn.close()
+    return "Livre emprunté avec succès"
     return redirect('/livres_disponibles')
     
 # Route pour consulter la liste des livres empruntés:

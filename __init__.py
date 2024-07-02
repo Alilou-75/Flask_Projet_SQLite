@@ -202,8 +202,8 @@ def delete_livre(ID_livre):
     flash('Livre supprimé avec succès')
     return redirect('/livres/')
 
- # Consulter la liste des Livres disponibles:
- # ==========================================
+ # Route pour chercher un Livre:
+ # =============================
 @app.route('/search_livres', methods=['GET'])
 def search_livres():
     query = request.args.get('query')
@@ -275,10 +275,13 @@ def search_emprunts():
     query = request.args.get('query')
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM livres WHERE titre LIKE ? OR auteur LIKE ?", ('%' + query + '%', '%' + query + '%'))
-    data = cursor.fetchall()
+    cursor.execute('''
+        SELECT * FROM livres 
+        WHERE (titre LIKE ? OR auteur LIKE ?) AND quantite > 0
+    ''', ('%' + query + '%', '%' + query + '%'))
+    livres = cursor.fetchall()
     conn.close()
-    return render_template('livres_disponibles.html', data=data)
+    return render_template('livres_disponibles.html', livres=livres)
 
 
 #==============================( La gestion des utilisateurs )===============================

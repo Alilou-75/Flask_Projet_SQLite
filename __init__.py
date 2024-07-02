@@ -275,7 +275,7 @@ def search_emprunts():
     query = request.args.get('query')
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM livres WHERE titre LIKE ? OR auteur LIKE ?", ('%' + query + '%', '%' + query + '%'))
+    cursor.execute("SELECT * FROM emprunts WHERE titre LIKE ? OR auteur LIKE ?", ('%' + query + '%', '%' + query + '%'))
     data = cursor.fetchall()
     conn.close()
     return render_template('livres_disponibles.html', data=data)

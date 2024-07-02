@@ -270,19 +270,8 @@ def ReadBDDEm():
 
 #Route pour valider l'emprunt d'un livre:
 #========================================
-@app.route('/emprunter_livre', methods=['GET', 'POST'])
+@app.route('/emprunter_livre')
 def emprunter_livre():
-    if request.method == 'POST':
-        ID_user = request.form['ID_user']
-        Date_retour_prevue = request.form['Date_retour_prevue']
-        
-        conn = sqlite3.connect('database2.db')
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO emprunts (ID_user, Date_retour_prevue) VALUES (?, ?)", (ID_user, Date_retour_prevue))
-        conn.commit()
-        conn.close()
-        return "Livre emprunté avec succès"
-        return redirect('/livres_empruntés/')
     return render_template('emprunter_livre.html')
 
 

@@ -273,8 +273,8 @@ def ReadBDDEm():
 @app.route('/emprunter_livre', methods=['GET', 'POST'])
 def emprunter_livre():
     if request.method == 'POST':
-        Numéro utilisateur = request.form['ID_user']
-        Date retour = request.form['Date_retour_prevue']
+        ID_user = request.form['ID_user']
+        Date_retour_prevue = request.form['Date_retour_prevue']
         
         conn = sqlite3.connect('database2.db')
         cursor = conn.cursor()

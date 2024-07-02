@@ -24,7 +24,11 @@
             <td>{{ livre[2] }}</td>
             <td>{{ livre[4] }}</td>
             <td>
-                <a class="btn-form" href="emprunter_livre.html">Emprunter</a>
+                <form action="/emprunter_livre/{{ livre[0] }}" method="POST">
+                <input type="text" name="ID_user"> <!-- ID utilisateur doit être dynamique -->
+                   <input type="date" name="Date_retour_prevue">
+                <button class="btn-form" type="submit">Emprunter</button>
+            </form>
             </td>
         </tr>
         {% endfor %}     

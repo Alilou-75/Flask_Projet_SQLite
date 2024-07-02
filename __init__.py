@@ -256,6 +256,7 @@ def emprunter_livre(ID_livre):
 
     conn.close()
     return redirect('/livres_disponibles')
+    return render_template('emprunter_livre.html')
     
 # Route pour consulter la liste des livres empruntés:
 # ==================================================

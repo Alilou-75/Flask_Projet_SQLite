@@ -11,11 +11,10 @@ def create_table(db_name):
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS utilisateurs (
            ID_user INTEGER PRIMARY KEY AUTOINCREMENT,
-           Created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            Nom TEXT NOT NULL,
-            Prenom TEXT NOT NULL,
-            Adresse TEXT NOT NULL,
-            Date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+           Nom TEXT NOT NULL,
+           Prenom TEXT NOT NULL,
+           Adresse TEXT NOT NULL,
+           Date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
    

@@ -270,8 +270,8 @@ def ReadBDDEm():
 
 #Route pour valider l'emprunt d'un livre:
 #========================================
-@app.route('/emprunter_livre')
-def emprunter_livre():
+@app.route('/valider_emprunt')
+def valider_emprunt():
     return render_template('emprunter_livre.html')
 
 

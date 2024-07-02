@@ -232,7 +232,7 @@ def livres_disponibles():
 def emprunter_livre(ID_livre):
     ID_user = request.form['ID_user']
     date_emprunt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
+    Date_retour_prevue = request.form['Date_retour_prevue']
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
 

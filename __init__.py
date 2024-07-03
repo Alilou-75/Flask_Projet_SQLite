@@ -209,7 +209,7 @@ def search_livres():
     query = request.args.get('query')
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    if cursor.execute('''
+if cursor.execute('''
          SELECT * FROM livres 
         WHERE (titre LIKE ? OR auteur LIKE ?) AND quantite > 0
     ''', ('%' + query + '%', '%' + query + '%')):

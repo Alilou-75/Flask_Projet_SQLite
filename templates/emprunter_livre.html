@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Emprunter un livre</h1>
-    <form action="{{ url_for('emprunter_livre', ID_livre=ID_livre) }}" method="POST">
+    <form action="{{ url_for('confirmer_emprunt', ID_livre=ID_livre) }}" method="POST">
         <fieldset>
                  <legend><i>Merci de completer le formulaire pour l'emprunt du livre :</i></legend>
         <label for="ID_user">Numéro utilisateur :</label>

@@ -8,12 +8,12 @@
 </head>
 <body>
     <h1>Emprunter un livre</h1>
-    <form action="/emprunter_livre/{{ livre[0] }}" method="POST">
+    <form action="{{ url_for('emprunter_livre', ID_livre=ID_livre) }}" method="POST">
         <fieldset>
                  <legend><i>Merci de completer le formulaire pour l'emprunt du livre :</i></legend>
         <label for="ID_user">Numéro utilisateur :</label>
          <input type="text" id="ID_user" name="ID_user" required><br> 
-        <label for="date">Date retour :</label>
+        <label for="Date_retour_prevue">Date retour :</label>
          <input type="date" id="Date_retour_prevue" name="Date_retour_prevue" required><br>
         
         <button class="btn-form" type="submit">Valider</button>

@@ -212,7 +212,7 @@ def search_livres():
     if cursor.execute('''
          SELECT * FROM livres 
         WHERE (titre LIKE ? OR auteur LIKE ?) AND quantite > 0
-    ''', ('%' + query + '%', '%' + query + '%'))
+    ''', ('%' + query + '%', '%' + query + '%')):
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data2.html', data=data)

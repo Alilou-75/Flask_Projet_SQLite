@@ -271,11 +271,7 @@ def ReadBDDEm():
 #Route pour valider l'emprunt d'un livre:
 #========================================
 
-# Route pour afficher le formulaire d'emprunt:
-#============================================
-@app.route('/emprunter_livre/<int:ID_livre>', methods=['GET'])
-def emprunter_livre(ID_livre):
-    return render_template('emprunter_livre.html', ID_livre=ID_livre)
+
 
 # Route pour Checher les Livres à emprunter:
 # ==========================================

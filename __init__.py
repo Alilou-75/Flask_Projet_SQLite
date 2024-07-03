@@ -209,6 +209,7 @@ def search_livres():
     query = request.args.get('query')
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
+    if
     cursor.execute('''
          SELECT * FROM livres 
         WHERE (titre LIKE ? OR auteur LIKE ?) AND quantite > 0
@@ -216,6 +217,8 @@ def search_livres():
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data2.html', data=data)
+else:
+    return "Ce livre est en rupture"
     
 # Route pour afficher les livres disponibles:
 #============================================

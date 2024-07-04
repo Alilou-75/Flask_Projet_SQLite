@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Retourner un Livre</title>
+</head>
+<body>
+    <h1>Retourner un Livre</h1>
+    <form action="{{ url_for('confirmer_retour', ID_livre=ID_livre) }}" method="post">
+        <label for="ID_user">ID Utilisateur:</label>
+        <input type="text" id="ID_user" name="ID_user" required>
+        <button type="submit">Confirmer Retour</button>
+    </form>
+</body>
+</html>

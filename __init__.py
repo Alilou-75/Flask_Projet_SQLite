@@ -289,9 +289,9 @@ def search_emprunts():
     return render_template('livres_disponibles.html', livres=livres)
 
 # Route pour afficher le formulaire de retour
-@app.route('/retourner_livre/<int:ID_livre>', methods=['GET'])
-def retourner_livre(ID_livre):
-    return render_template('retourner_livre.html', ID_livre=ID_livre)
+@app.route('/retourner_livre/
+def retourner_livre():
+    return render_template('retourner_livre.html', livre=livre)
 
 # Route pour gérer le processus de retour
 @app.route('/confirmer_retour/<int:ID_livre>', methods=['POST'])

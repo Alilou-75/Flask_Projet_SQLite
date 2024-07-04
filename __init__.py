@@ -288,6 +288,28 @@ def search_emprunts():
     conn.close()
     return render_template('livres_disponibles.html', livres=livres)
 
+# Route pour afficher le formulaire de retour
+@app.route('/retourner_livre/<int:ID_livre>', methods=['GET'])
+def retourner_livre(ID_livre):
+    return render_template('retourner_livre.html', ID_livre=ID_livre)
+
+# Route pour gérer le processus de retour
+@app.route('/confirmer_retour/<int:ID_livre>', methods=['POST'])
+def confirmer_retour(ID_livre):
+    ID_user = request.form['ID_user']
+    date_retour = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+
+    cursor.execute('UPDATE emprunts SET date_retour = ? WHERE ID_livre = ? AND ID_user = ? AND date_retour IS NULL', (date_retour, ID_livre, ID_user))
+    cursor.execute('UPDATE livres SET quantite = quantite + 1 WHERE ID_livre = ?', (ID_livre,))
+    conn.commit()
+    conn.close()
+    flash('Livre retourné avec succès')
+    return redirect('/livres_disponibles')
+
+
 
 #==============================( La gestion des utilisateurs )===============================
 

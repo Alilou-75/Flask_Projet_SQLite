@@ -288,12 +288,19 @@ def search_emprunts():
     conn.close()
     return render_template('livres_disponibles.html', livres=livres)
 
-# Route pour afficher le formulaire de retour
+# Route pour afficher le formulaire de retour:
+#============================================
 @app.route('/retourner_livre/')
 def retourner_livre():
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Emprunts;')
+    livres = cursor.fetchall()
+    conn.close()
     return render_template('retourner_livre.html', livre=livre)
 
-# Route pour gérer le processus de retour
+# Route pour gérer le processus de retour:
+#=========================================
 @app.route('/confirmer_retour/<int:ID_livre>', methods=['POST'])
 def confirmer_retour(ID_livre):
     ID_user = request.form['ID_user']
@@ -308,6 +315,7 @@ def confirmer_retour(ID_livre):
     conn.close()
     flash('Livre retourné avec succès')
     return redirect('/livres_disponibles')
+
 
 
 

@@ -295,9 +295,9 @@ def retourner_livre():
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM Emprunts;')
-    livres = cursor.fetchall()
+    ID_livre = cursor.fetchall()
     conn.close()
-    return render_template('retourner_livre.html', livre=livre)
+    return render_template('retourner_livre.html', ID_livre=ID_livre)
 
 # Route pour gérer le processus de retour:
 #=========================================

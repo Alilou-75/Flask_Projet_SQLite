@@ -289,7 +289,7 @@ def search_emprunts():
     return render_template('livres_disponibles.html', livres=livres)
 
 # Route pour afficher le formulaire de retour
-@app.route('/retourner_livre/
+@app.route('/retourner_livre/')
 def retourner_livre():
     return render_template('retourner_livre.html', livre=livre)
 

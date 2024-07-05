@@ -295,7 +295,7 @@ def retourner_livre():
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM Emprunts;')
-    livres = cursor.fetchall()
+    livre = cursor.fetchall()
     conn.close()
     return render_template('livres_empruntés.html', livre=livre)
 

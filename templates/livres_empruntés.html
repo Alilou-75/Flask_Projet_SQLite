@@ -26,7 +26,13 @@
             <td>{{ row[2] }}</td>
             <td>{{ row[3] }}</td>
             <td>{{ row[4] }}</td>
-            <td>{{ row[5] }}</td>
+            <td>
+                <form action="/confirmer_retour/{{ livre[0] }}" method="post">
+                <label for="ID_user">ID Utilisateur:</label>
+                    <input type="text" id="ID_user" name="ID_user" required>
+                <button type="submit">Confirmer Retour</button>
+             </form>
+            </td>
         </tr>
         {% endfor %}     
         </tbody>   

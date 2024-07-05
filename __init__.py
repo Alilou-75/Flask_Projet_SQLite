@@ -304,12 +304,12 @@ def retourner_livre():
 @app.route('/confirmer_retour/<int:ID_livre>', methods=['POST'])
 def confirmer_retour(ID_livre):
     ID_user = request.form['ID_user']
-    date_retour = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    Date_retour_effective = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
 
-    cursor.execute('UPDATE emprunts SET date_retour = ? WHERE ID_livre = ? AND ID_user = ? AND date_retour IS NULL', (date_retour, ID_livre, ID_user))
+    cursor.execute('UPDATE emprunts SET Date_retour_effective = ? WHERE ID_livre = ? AND ID_user = ? AND Date_retour_effective IS NULL', (Date_retour_effective, ID_livre, ID_user))
     cursor.execute('UPDATE livres SET quantite = quantite + 1 WHERE ID_livre = ?', (ID_livre,))
     conn.commit()
     conn.close()

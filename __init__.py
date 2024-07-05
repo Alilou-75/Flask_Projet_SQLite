@@ -297,7 +297,7 @@ def retourner_livre():
     cursor.execute('SELECT * FROM Emprunts;')
     data = cursor.fetchall()
     conn.close()
-    return render_template('livres_empruntés.html', data=data)
+    return render_template('retourner_livre.html', data=data)
 
 # Route pour gérer le processus de retour:
 #=========================================

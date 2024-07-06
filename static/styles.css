@@ -54,7 +54,7 @@ nav {
         border-radius: 10px;
         border: none;
         color: white;
-        padding: 15px 34px;
+        padding: 10px 25px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -116,7 +116,7 @@ fieldset{
    rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
     width: 100px;
-    margin-top: 4%;
+   
 }
 .btn-form:hover {
  background-color: rgb(159, 158, 160);

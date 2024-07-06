@@ -67,12 +67,28 @@ nav {
 .button:hover {
     background-color: #110861;
 }
+.button-1 {
+        background-color: #1c27c9;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        padding: 15px 34px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 5px 10px;
+        cursor: pointer;
+        width: 20%;
+        box-shadow: 3px 3px 3px black; 
+
+}
+.button-1:hover {
+    background-color: #110861;
+}
 p,nav {
             margin-left: 20px;
             margin-right: 20px;
-        }
-        h2 {
-            text-align: center;
         }
         th {
             background-color: rgb(98, 98, 230);

@@ -7,6 +7,11 @@
 </head>
 <body>
     <h1>Liste des Utilisateurs</h1>
+     <!-- Formulaire de recherche -->
+    <form action="{{ url_for('search_users') }}" method="get">
+        <input type="text" name="query" placeholder="Rechercher un livre">
+        <input class="btn-form" type="submit" value="Rechercher">
+    </form>
     <table id="myTable">
         <thead>
         <tr>

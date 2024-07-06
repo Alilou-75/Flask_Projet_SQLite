@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>Gestion des livres</h1>
-    <h2>Ajouter un nouveau livre</h2>
+    <h2><i>Ajouter un nouveau livre</i></h2>
      <a class="button-1" href="{{ url_for('enregistrer_livre') }}">Ajouter</a>
-    <h2>Liste des livres</h2>
+    <h2><i>Liste des livres</i></h2>
     <form action="{{ url_for('search_livres') }}" method="get">   <!-- Formulaire de recherche -->
         <input type="text" name="query" placeholder="Rechercher un livre">
         <input class="btn-form" type="submit" value="Rechercher">

@@ -127,6 +127,21 @@ def delete_client(client_id):
 if __name__ == "__main__":
     app.run(debug=True)
 
+# Route pour chercher un Client:
+ # =============================
+@app.route('/search_clients', methods=['GET'])
+def search_clients():
+    query = request.args.get('query')
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+         SELECT * FROM clients 
+        WHERE (Nom LIKE ? OR Prenom LIKE ?)
+    ''', ('%' + query + '%', '%' + query + '%'))
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('read_data.html', data=data)
+    
 #================================================( Projet de Bibliothèque )============================================================
 
  # Consulter la liste des Livres:
@@ -366,8 +381,8 @@ def delete_user(ID_user):
 if __name__ == "__main__":
     app.run(debug=True)
 
- # Route pour chercher un Livre:
- # =============================
+ # Route pour chercher un utilisateur:
+ # ===================================
 @app.route('/search_users', methods=['GET'])
 def search_users():
     query = request.args.get('query')

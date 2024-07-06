@@ -136,11 +136,11 @@ def search_clients():
     cursor = conn.cursor()
     cursor.execute('''
          SELECT * FROM clients 
-        WHERE (Nom LIKE ? OR Prenom LIKE ?)
+        WHERE (nom LIKE ? OR prenom LIKE ?)
     ''', ('%' + query + '%', '%' + query + '%'))
-    client = cursor.fetchall()
+    clients = cursor.fetchall()
     conn.close()
-    return render_template('read_data.html', client=client)
+    return render_template('read_data.html', clients=clients)
     
 #================================================( Projet de Bibliothèque )============================================================
 

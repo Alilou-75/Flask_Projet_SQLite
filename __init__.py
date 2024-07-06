@@ -138,9 +138,9 @@ def search_clients():
          SELECT * FROM clients 
         WHERE (Nom LIKE ? OR Prenom LIKE ?)
     ''', ('%' + query + '%', '%' + query + '%'))
-    data = cursor.fetchall()
+    client = cursor.fetchall()
     conn.close()
-    return render_template('read_data.html', data=data)
+    return render_template('read_data.html', client=client)
     
 #================================================( Projet de Bibliothèque )============================================================
 
@@ -282,10 +282,6 @@ def ReadBDDEm():
     data = cursor.fetchall()
     conn.close()
     return render_template('livres_empruntés.html', data=data)
-
-#Route pour valider l'emprunt d'un livre:
-#========================================
-
 
 
 # Route pour Checher les Livres à emprunter:

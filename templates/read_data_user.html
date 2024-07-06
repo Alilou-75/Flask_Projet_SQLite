@@ -6,7 +6,10 @@
     <title>Utilisateurs</title>
 </head>
 <body>
-    <h1>Liste des Utilisateurs</h1>
+    <h1>Gestion des Utilisateurs</h1>
+    <h2><i>Ajouter un nouvel utilisateur</i></h2>
+    <a class="button-1" href="{{ url_for('enregistrer_user') }}">Ajouter</a>
+    <h2><i>Liste des Utilisateurs</i></h2>
      <!-- Formulaire de recherche -->
     <form action="{{ url_for('search_users') }}" method="get">
         <input type="text" name="query" placeholder="Rechercher un livre">
@@ -40,6 +43,6 @@
         {% endfor %}     
         </tbody>   
     </table>
-     <a class="button" href="{{ url_for('enregistrer_user') }}">Ajouter un nouvel utilisateur</a>
+     
 </body>
 </html>

@@ -12,6 +12,7 @@
         <input type="text" name="query" placeholder="Rechercher un livre">
         <input class="btn-form" type="submit" value="Rechercher">
     </form>
+     <a class="button" href="{{ url_for('enregistrer_livre') }}">Ajouter un nouveau livre</a>
     <table id="myTable">
        <thead>
             <tr bgcolor="yellow">
@@ -40,7 +41,7 @@
         {% endfor %}     
         </tbody>   
     </table>
-     <a class="button" href="{{ url_for('enregistrer_livre') }}">Ajouter un nouveau livre</a>
+    
 </body>
 </html>
 

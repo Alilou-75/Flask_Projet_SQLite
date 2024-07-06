@@ -7,13 +7,13 @@
 </head>
 <body>
     <h1>Gestion des livres</h1>
+     <a class="button" href="{{ url_for('enregistrer_livre') }}">Ajouter un nouveau livre</a>
+    <h1>Liste des livres</h1>
      <!-- Formulaire de recherche -->
     <form action="{{ url_for('search_livres') }}" method="get">
         <input type="text" name="query" placeholder="Rechercher un livre">
         <input class="btn-form" type="submit" value="Rechercher">
     </form>
-     <a class="button" href="{{ url_for('enregistrer_livre') }}">Ajouter un nouveau livre</a>
-    <h1>Liste des livres</h1>
     <table id="myTable">
        <thead>
             <tr bgcolor="yellow">

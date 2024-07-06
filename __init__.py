@@ -366,6 +366,21 @@ def delete_user(ID_user):
 if __name__ == "__main__":
     app.run(debug=True)
 
+ # Route pour chercher un Livre:
+ # =============================
+@app.route('/search_users', methods=['GET'])
+def search_users():
+    query = request.args.get('query')
+    conn = sqlite3.connect('database2.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+         SELECT * FROM utilisateurs 
+        WHERE (Nom LIKE ? OR Prenom LIKE ?) 
+    ''', ('%' + query + '%', '%' + query + '%'))
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('read_data_user.html', data=data)
+    
 
 
 

@@ -366,7 +366,7 @@ def ReadBDDu():
 #=======================================
 # Formulaire de suppression d'un utilisateur avec mot de passe
 @app.route('/delete_user/<int:ID_user>', methods=['GET'])
-def delete_user_form(ID_user):
+def delete_user(ID_user):
     return render_template('delete_user.html', ID_user=ID_user)
 
 @app.route('/confirm_delete_user/<int:ID_user>', methods=['POST'])

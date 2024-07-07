@@ -364,14 +364,26 @@ def ReadBDDu():
 
 # Route pour suppression un utilisateur:
 #=======================================
-@app.route('/delete_user/<int:ID_user>', methods=['POST'])
-def delete_user(ID_user):
-    conn = sqlite3.connect('database2.db')
-    cursor = conn.cursor()
-    cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (ID_user,))
-    conn.commit()
-    conn.close()
-    flash('Utilisateur supprimé avec succès')
+# Formulaire de suppression d'un utilisateur avec mot de passe
+@app.route('/delete_user/<int:post_ID_user>', methods=['GET'])
+def delete_user_form(post_ID_user):
+    return render_template('delete_user.html', post_ID_user=post_ID_user)
+
+@app.route('/confirm_delete_user/<int:post_ID_user>', methods=['POST'])
+def confirm_delete_user(post_ID_user):
+    password = request.form['password']
+    admin_password = "admin_secret_password"  # You should store this securely, not in plain text
+
+    if password == admin_password:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (post_ID_user,))
+        conn.commit()
+        conn.close()
+        flash('Utilisateur supprimé avec succès')
+    else:
+        flash('Mot de passe incorrect')
+    
     return redirect('/utilisateurs/')
 
 if __name__ == "__main__":

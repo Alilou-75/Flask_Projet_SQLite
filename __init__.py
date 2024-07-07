@@ -144,6 +144,12 @@ def search_clients():
     
 #================================================( Projet de Bibliothèque )============================================================
 
+# Connexion à la base de données
+def get_db_connection():
+    conn = sqlite3.connect('database2.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
  # Consulter la liste des Livres:
  # ==============================
 @app.route('/livres/')

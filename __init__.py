@@ -365,19 +365,19 @@ def ReadBDDu():
 # Route pour suppression un utilisateur:
 #=======================================
 # Formulaire de suppression d'un utilisateur avec mot de passe
-@app.route('/delete_user/<int:post_ID_user>', methods=['GET'])
-def delete_user_form(post_ID_user):
-    return render_template('delete_user.html', post_ID_user=post_ID_user)
+@app.route('/delete_user/<int:ID_user>', methods=['GET'])
+def delete_user_form(ID_user):
+    return render_template('delete_user.html', ID_user=ID_user)
 
-@app.route('/confirm_delete_user/<int:post_ID_user>', methods=['POST'])
-def confirm_delete_user(post_ID_user):
+@app.route('/confirm_delete_user/<int:ID_user>', methods=['POST'])
+def confirm_delete_user(ID_user):
     password = request.form['password']
     admin_password = "admin_secret_password"  # You should store this securely, not in plain text
 
     if password == admin_password:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (post_ID_user,))
+        cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (ID_user,))
         conn.commit()
         conn.close()
         flash('Utilisateur supprimé avec succès')

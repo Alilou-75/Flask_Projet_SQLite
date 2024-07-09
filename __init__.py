@@ -371,8 +371,8 @@ def ReadBDDu():
 # Route pour suppression un utilisateur:
 #=======================================
 # Formulaire de suppression d'un utilisateur avec mot de passe
-@app.route('/delete_user', methods=['GET', 'POST'])
-def delete_user():
+@app.route('/delete_user/<int:ID_user>', methods=['GET', 'POST'])
+def delete_user(ID_user):
     if request.method == 'POST':
         password = request.form['password']
         admin_password = "admin_secret_password"  # Vous devriez stocker ceci de manière sécurisée, pas en clair
@@ -388,8 +388,7 @@ def delete_user():
             flash('Mot de passe incorrect')
         
         return redirect('/utilisateurs/')
-    return render_template('delete_user.html')
-
+    return render_template('delete_user.html', ID_user=ID_user)
 if __name__ == "__main__":
     app.run(debug=True)
 

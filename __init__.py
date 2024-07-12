@@ -402,11 +402,12 @@ def confirm_delete_user(ID_user):
         cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (ID_user,))
         conn.commit()
         conn.close()
-        flash('Utilisateur supprimé avec succès')
+        flash('Utilisateur supprimé avec succès', 'success')
     else:
-        flash('Mot de passe incorrect')
+        flash('Mot de passe incorrect', 'error')
     
-    return redirect('/utilisateurs/')
+    return redirect(url_for('ReadBDDu'))
+    return render_template('delete_user.html', ID_user=ID_user)
 
 if __name__ == "__main__":
     app.run(debug=True)

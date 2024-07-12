@@ -131,3 +131,36 @@ input {
     height: 25px;
     width: auto;
 }
+
+.flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+.flash-message {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.flash-message.success {
+    background-color: #5cb85c;
+}
+
+.flash-message.error {
+    background-color: #d9534f;
+}
+
+.flash-message.info {
+    background-color: #5bc0de;
+}
+
+.flash-message.warning {
+    background-color: #f0ad4e;
+}

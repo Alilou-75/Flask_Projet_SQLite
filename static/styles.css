@@ -135,13 +135,13 @@ input {
 .flash-container {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     z-index: 1000;
     display: none;
 }
 
 .flash-message {
-    background-color: #f0ad4e;
+    background-color: #f1a943;
     color: white;
     padding: 15px;
     border-radius: 5px;
@@ -150,15 +150,15 @@ input {
 }
 
 .flash-message.success {
-    background-color: #5cb85c;
+    background-color: #34c434;
 }
 
 .flash-message.error {
-    background-color: #d9534f;
+    background-color: #d13d38;
 }
 
 .flash-message.info {
-    background-color: #5bc0de;
+    background-color: #47badd;
 }
 
 .flash-message.warning {

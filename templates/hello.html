@@ -4,18 +4,7 @@
     <meta charset="UTF-8">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% block title %}Flask Server{% endblock %}</title>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const flashContainer = document.querySelector('.flash-container');
-        if (flashContainer) {
-            flashContainer.style.display = 'block';
-            setTimeout(() => {
-                flashContainer.style.display = 'none';
-            }, 5000); // Cache la notification après 5 secondes
-        }
-    });
-    </script>
+<title>Flask Server</title>
   </head>
 <body>
   <h1>Bienvenu Ali sur ton serveur de bases de données !</h1>
@@ -36,18 +25,7 @@
         <a href="https://alilouducnam.alwaysdata.net/retourner_livre" class="button" target="_blank">Enregister le retour d'un livre</a>
     </nav>
     <br>
-    <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-               <div class="flash-container">
-                    {% for category, message in messages %}
-                        <div class="flash-message {{ category }}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-    </div>
+   
 <p>Ce serveur contient une base de données des clinets, et d'une bibliothèque moderne qui simplifie le processus de prêt et de retour de livres.<br/>
   Les fonctionnalités attendues dans le cadre de ce projet sont les suivantes :</p>
   <ol>

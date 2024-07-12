@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Confirmer la Suppression</title>
+</head>
+<body>
+    <h1>Confirmer la Suppression</h1>
+    <form action="{{ url_for('confirm_delete_livre', ID_livre=ID_livre) }}" method="post">
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Confirmer</button>
+    </form>
+</body>
+</html>
+
+

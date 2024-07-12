@@ -121,7 +121,7 @@ def delete_client(client_id):
     cursor.execute('DELETE FROM clients WHERE id = ?', (client_id,))
     conn.commit()
     conn.close()
-    flash('Client supprimé avec succès')
+    flash('Client supprimé avec succès', 'success')
     return redirect('/consultation/')
 
 if __name__ == "__main__":
@@ -206,7 +206,7 @@ def enregistrer_livre():
         cursor.execute("INSERT INTO livres (titre, auteur, annee_publication, quantite) VALUES (?, ?, ?, ?)", (titre, auteur, annee_publication, quantite))
         conn.commit()
         conn.close()
-        flash('Livre enregistré avec succès')
+        flash('Livre enregistré avec succès', 'success')
         return redirect('/livres/') # Rediriger vers la page d'accueil après l'enregistrement
     return render_template('formulaire2.html')                                                                                                          
     
@@ -323,9 +323,9 @@ def confirm_delete_livre(ID_livre):
         cursor.execute('DELETE FROM livres WHERE ID_livre = ?', (ID_livre,))
         conn.commit()
         conn.close()
-        flash('livre supprimé avec succès')
+        flash('livre supprimé avec succès', 'success')
     else:
-        flash('Mot de passe incorrect')
+        flash('Mot de passe incorrect', 'error')
     
     return redirect('/livres/')
 
@@ -346,7 +346,7 @@ def confirmer_retour(ID_livre):
     cursor.execute('UPDATE livres SET quantite = quantite + 1 WHERE ID_livre = ?', (ID_livre,))
     conn.commit()
     conn.close()
-    flash('Livre retourné avec succès')
+    flash('Livre retourné avec succès', 'success')
     return redirect('/livres_disponibles')
 
 
@@ -369,7 +369,7 @@ def enregistrer_user():
         cursor.execute("INSERT INTO utilisateurs (nom, prenom, adresse) VALUES (?, ?, ?)", (nom, prenom, adresse))
         conn.commit()
         conn.close()
-        flash('Utilisateur enregistré avec succès')
+        flash('Utilisateur enregistré avec succès', 'success')
         return redirect('/utilisateurs/')
     return render_template('formulaire_user.html')
                                                                                                                                           

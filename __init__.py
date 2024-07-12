@@ -371,24 +371,27 @@ def ReadBDDu():
 # Route pour suppression un utilisateur:
 #=======================================
 # Formulaire de suppression d'un utilisateur avec mot de passe
-@app.route('/delete_user/<int:ID_user>', methods=['GET', 'POST'])
+@app.route('/delete_user/<int:ID_user>', methods=['GET'])
 def delete_user(ID_user):
-    if request.method == 'POST':
-        password = request.form['password']
-        admin_password = "admin_secret_password"  # Vous devriez stocker ceci de manière sécurisée, pas en clair
-
-        if password == admin_password:
-            conn = get_db_connection()
-            cursor = conn.cursor()
-            cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (ID_user,))
-            conn.commit()
-            conn.close()
-            flash('Utilisateur supprimé avec succès')
-        else:
-            flash('Mot de passe incorrect')
-        
-        return redirect('/utilisateurs/')
     return render_template('delete_user.html', ID_user=ID_user)
+
+@app.route('/confirm_delete_user/<int:ID_user>', methods=['POST'])
+def confirm_delete_user(ID_user):
+    password = request.form['password']
+    admin_password = "admin_secret_password"  # You should store this securely, not in plain text
+
+    if password == admin_password:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (post_ID_user,))
+        conn.commit()
+        conn.close()
+        flash('Utilisateur supprimé avec succès')
+    else:
+        flash('Mot de passe incorrect')
+    
+    return redirect('/utilisateurs/')
+
 if __name__ == "__main__":
     app.run(debug=True)
 

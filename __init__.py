@@ -210,18 +210,7 @@ def enregistrer_livre():
         return redirect('/livres/') # Rediriger vers la page d'accueil après l'enregistrement
     return render_template('formulaire2.html')                                                                                                          
     
-# Route pour suppression d'un livre par son Numero:
-#=================================================
 
-@app.route('/delete_livre/<int:ID_livre>', methods=['POST'])
-def delete_livre(ID_livre):
-    conn = sqlite3.connect('database2.db')
-    cursor = conn.cursor()
-    cursor.execute('DELETE FROM livres WHERE ID_livre = ?', (ID_livre,))
-    conn.commit()
-    conn.close()
-    flash('Livre supprimé avec succès')
-    return redirect('/livres/')
 
  # Route pour chercher un Livre:
  # =============================

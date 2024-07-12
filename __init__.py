@@ -383,7 +383,7 @@ def confirm_delete_user(ID_user):
     if password == admin_password:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (post_ID_user,))
+        cursor.execute('DELETE FROM utilisateurs WHERE ID_user = ?', (ID_user,))
         conn.commit()
         conn.close()
         flash('Utilisateur supprimé avec succès')

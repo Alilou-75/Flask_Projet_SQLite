@@ -5,6 +5,17 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% block title %}Flask Server{% endblock %}</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const flashContainer = document.querySelector('.flash-container');
+        if (flashContainer) {
+            flashContainer.style.display = 'block';
+            setTimeout(() => {
+                flashContainer.style.display = 'none';
+            }, 5000); // Cache la notification après 5 secondes
+        }
+    });
+    </script>
   </head>
 <body>
   <h1>Bienvenu Ali sur ton serveur de bases de données !</h1>

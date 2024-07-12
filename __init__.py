@@ -316,6 +316,33 @@ def retourner_livre():
     conn.close()
     return render_template('retourner_livre.html', data=data)
 
+# Route pour la suppression d'un livre:
+#======================================
+# Formulaire de suppression d'un livre avec mot de passe
+@app.route('/delete_livre/<int:ID_livre>', methods=['GET', 'POST'])
+def delete_livre(ID_livre):
+    return render_template('delete_livre.html', ID_livre=ID_livre)
+
+@app.route('/confirm_delete_livre/<int:ID_livre>', methods=['POST'])
+def confirm_delete_livre(ID_livre):
+    password = request.form['password']
+    admin_password = "AlilouyaXX17"  # You should store this securely, not in plain text
+
+    if password == admin_password:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM livres WHERE ID_livre = ?', (ID_livre,))
+        conn.commit()
+        conn.close()
+        flash('livre supprimé avec succès')
+    else:
+        flash('Mot de passe incorrect')
+    
+    return redirect('/livres/')
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 # Route pour gérer le processus de retour:
 #=========================================
 @app.route('/confirmer_retour/<int:ID_livre>', methods=['POST'])
@@ -378,7 +405,7 @@ def delete_user(ID_user):
 @app.route('/confirm_delete_user/<int:ID_user>', methods=['POST'])
 def confirm_delete_user(ID_user):
     password = request.form['password']
-    admin_password = "admin_secret_password"  # You should store this securely, not in plain text
+    admin_password = "AlilouyaXX17"  # You should store this securely, not in plain text
 
     if password == admin_password:
         conn = get_db_connection()

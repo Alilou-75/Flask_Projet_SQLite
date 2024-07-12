@@ -1,11 +1,13 @@
 <!DOCTYPE>
 <html lang="fr">
+    {% extends "hello.html" %}
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Livres</title>
+    {% block title %}Livres{% endblock %}
 </head>
 <body>
+    {% block content %}
     <h1>Gestion des livres</h1>
     <h2><i>Ajouter un nouveau livre</i></h2>
      <a class="button-1" href="{{ url_for('enregistrer_livre') }}">Ajouter</a>
@@ -42,6 +44,7 @@
         {% endfor %}     
         </tbody>   
     </table>
+    {% endblock %}
     
 </body>
 </html>

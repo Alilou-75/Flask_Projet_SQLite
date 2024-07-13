@@ -112,16 +112,28 @@ def enregistrer_client():
 if __name__ == "__main__":
   app.run(debug=True)
     
-# Route pour suppression d'un client par son Numero:
-#==================================================
-@app.route('/delete_client/<int:client_id>', methods=['POST'])
+# Route pour la suppression d'un client:
+#======================================
+# Formulaire de suppression d'un client avec mot de passe
+@app.route('/delete_client/<int:client_id>', methods=['GET', 'POST'])
 def delete_client(client_id):
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute('DELETE FROM clients WHERE id = ?', (client_id,))
-    conn.commit()
-    conn.close()
-    flash('Client supprimé avec succès', 'success')
+    return render_template('delete_client.html', client_id=client_id)
+
+@app.route('/confirm_delete_client/<int:client_id>', methods=['POST'])
+def confirm_delete_client(client_id):
+    password = request.form['password']
+    admin_password = "AlilouyaXX17"  # You should store this securely, not in plain text
+
+    if password == admin_password:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM clients WHERE client_id = ?', (client_id,))
+        conn.commit()
+        conn.close()
+        flash('Client supprimé avec succès', 'success')
+    else:
+        flash('Mot de passe incorrect', 'error')
+    
     return redirect('/consultation/')
 
 if __name__ == "__main__":

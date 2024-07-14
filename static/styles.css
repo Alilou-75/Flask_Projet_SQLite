@@ -52,7 +52,7 @@ div {
 nav {
     display: flex;
     flex-direction: column;
-    
+    width: 50%;
       }
 .Library-2 {
     max-width: 100%;

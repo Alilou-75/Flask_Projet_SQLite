@@ -60,6 +60,10 @@ nav {
     flex-direction: column;
     width: 50%;
       }
+.img-contener {
+    width: 50%;
+    height: auto;
+}
 .Library-2 {
     width: 200PX;
     height: auto;

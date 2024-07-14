@@ -41,14 +41,24 @@ th {
 .delete-btn:hover {
     background-color: #c0392b;
 }
-nav {
-    display: flex;
-    flex-direction: column;
+div {
     box-shadow: 3px 3px 3px black;
     border-radius: 10px;
     padding: 20px;
     background-color: #5992e9;
+
+}
+nav {
+    display: flex;
+    flex-direction: column;
+    
       }
+#Library-2 {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+
+}
 .button {
         background-color: #1c27c9;
         border-radius: 10px;

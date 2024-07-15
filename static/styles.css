@@ -56,11 +56,6 @@ th {
     background-color: #5992e9;
     
 }
-nav {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-      }
 
 .button {
         background-color: #1c27c9;
